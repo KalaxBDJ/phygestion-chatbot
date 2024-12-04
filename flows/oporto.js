@@ -38,7 +38,7 @@ const flowOporto = addKeyword(['OPORTO'], { sensitive: true })
         '*21.* Información sanciones parqueadero.',
         '*22.* Reportar novedades locativas.',
         '*23.* Contactar con un asesor.',
-      
+
         '\n*Opciones de Navegación:* 🧭',
         '*24.* Volver al menú principal.',
         '*0.* Terminar la conversación.'
@@ -50,27 +50,29 @@ const flowOporto = addKeyword(['OPORTO'], { sensitive: true })
             case '1':
                 await flowDynamic(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
 
-Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtjToG-BGmGgxJq8A?e=1KjneI `); 
+Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtjToG-BGmGgxJq8A?e=1KjneI `);
                 break;
             case '2':
-                await flowDynamic(`Por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠. 
+                await flowDynamic(`Por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠.
 Asegúrate de especificar la novedad de facturación 📝 para que podamos realizar la corrección correspondiente, si es necesario.`);
                 break;
             case '3':
                 await flowDynamic(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
 
-Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`); 
+Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`);
                 break;
             case '4':
-                await flowDynamic(`Para reportar novedad de facturación, por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠 y asegúrate de especificar la novedad`); 
+                await flowDynamic(`Para reportar novedad de facturación, por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠 y asegúrate de especificar la novedad`);
                     break;
             case '5':
                 await flowDynamic(
                     `*MEDIOS DE PAGO CUOTAS DE ADMINISTRACIÓN* 💰
 
-1. Link para realizar pago por PSE, recuerda que al ingresar en el buscador debes poner *“OPORTO CIUDADELA PH ETAPA 1”* y, en la casilla de referencia, debes escribir el *Número del Apartamento*. Ingresa aquí para realizar el pago: https://www.jelpit.com/conjuntos/
+1.https://www.phenlinea.info/
 
-2. Directamente en oficina bancaria *DAVIVIENDA*, cuenta de ahor*037570395998* referencia número del apartamento.`);
+2. Link para realizar pago por PSE, recuerda que al ingresar en el buscador debes poner *“OPORTO CIUDADELA PH ETAPA 1”* y, en la casilla de referencia, debes escribir el *Número del Apartamento*. Ingresa aquí para realizar el pago: https://www.jelpit.com/conjuntos/
+
+3. Directamente en oficina bancaria *DAVIVIENDA*, cuenta de ahor*037570395998* referencia número del apartamento.`);
                 break;
             case '6':
                 await flowDynamic(
@@ -119,22 +121,24 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
             case '11':
                 await flowDynamic(
                     `🚛 *INFORMACIÓN DE MUDANZAS*
-Las mudanzas se pueden realizar de *lunes a viernes* de ⏰ *8:00 AM* a *12:00 PM* y de *2:00 PM* a *4:30 PM*, y los *sábados* de *8:00 AM* a *2:00 PM*.
-Para realizar mudanzas (ingreso o salida), el propietario debe enviar la autorización vía correo electrónico *3 días hábiles* antes de la fecha de la mudanza 📧. En este correo, es importante indicar la *fecha exacta* de la mudanza y tener en cuenta los horarios establecidos.
-💰 *Depósito*: Se debe entregar un depósito de $200.000 COP en efectivo en la portería antes de realizar la mudanza.`);
+Las mudanzas son de lunes a viernes de 8:00 AM a 12:00 PM y de 2:00 PM a 4:30 PM - Sábados de 8:00 AM a 2:00 PM
+Para realizar mudanzas tanto ingreso como salida, el propietario o  la inmobiliaria debe enviar la autorización vía correo electrónico 3 días hábiles antes de la mudanza ser realizada; en este correo deberá indicarnos la fecha exacta de la mudanza.
+Se debe dar un depósito de 200.000 en efectivo en portería `);
                 break;
             case '12':
                 await flowDynamic(
-                    `*HORARIOS DE ATENCIÓN ADMINISTRATIVA* 🕒
-    
-*Lunes a Viernes*: ⏰ 8:00 a.m. a 1:00 p.m. y de 2:00 p.m. a 5:00 p.m.
-*Sábados*: (Dos veces al mes) ⏰ 8:00 a.m. a 12:00 p.m.`);
+                    `*HORARIO ADMINISTRACIÓN*
+LUNES, MARTES, MIERCOLES, JUEVES Y VIERNES
+8:00 AM A 1:00 PM 2:00 PM A 5:00 PM
+
+SABADO (2 al mes)
+8:00 AM A 12:00 PM`);
                 break;
             case '13':
                 await flowDynamic(
                     `*HORARIOS DEL GIMNASIO* 🏋️
 *Lunes a Domingo* (Incluye festivos): ⏰ 5:00 AM a 9:00 PM.
-    
+
 *HORARIOS PISCINA* 🏊
 *Martes a Viernes*: 2:00 PM a 8:00 PM.
 *Sábado, Domingo y Lunes* (si es festivo): 10:30 AM a 6:00 PM.
@@ -149,9 +153,8 @@ Para realizar mudanzas (ingreso o salida), el propietario debe enviar la autoriz
 *Domingo a Jueves* (Incluye festivos): 10:00 AM a 11:00 PM.
 *Viernes y Sábado*: 10:00 AM a 12:00 AM.
 
-*HORARIOS CANCHA* ⚽
-*Martes a Domingo*: 10:00 AM a 8:00 PM.
-*Lunes*: 01:00 PM a 8:00 PM.`);
+*HORARIO CANCHA* ⚽
+*Lunes*: 12 a 8 pm.`);
                 break;
             case '14':
                 await flowDynamic('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/drive/folders/1rZcE1osCx4d6rrWO9V6NcEcWLGP02_NG?usp=sharing📘');
@@ -169,6 +172,7 @@ Para realizar mudanzas (ingreso o salida), el propietario debe enviar la autoriz
                 await flowDynamic(
                     `*RESERVA Y COSTO DEL SALÓN SOCIAL* 🎉
 
+Puede realizar la reserva en el siguiente enlace => https://www.phenlinea.info/
 * 💵 El salón tiene un valor de 150.000 pesos que se debe consignar a la cuenta de la copropiedad una *semana antes del evento*.
 * 💰 El día del evento se debe dejar un depósito de *150.000* pesos en efectivo en portería por si ocurre alguna novedad.
 * El salón cuenta con 30 sillas, 4 mesas y una cocineta.
@@ -187,6 +191,7 @@ Se entrega el mismo día del evento.
             case '19':
                 await flowDynamic(`*RESERVA Y COSTO DEL BBQ* 🔥
 
+Puede realizar la reserva en el siguiente enlace => https://www.phenlinea.info/
 * 💵 El BBQ tiene un valor de 70.000 pesos que se debe consignar a la cuenta de la copropiedad una *semana antes del evento*.
 * 💰 El día del evento se debe dejar un depósito de *100.000* pesos en efectivo en portería por si ocurre alguna novedad.
 * El BBQ cuenta con 3 mesas y 15 sillas.
@@ -198,10 +203,10 @@ Se entrega de *Lunes a Domingo* (Incluye festivos): 3:00 PM a 12:00 AM
 *✅ Requisitos*:
 * El apartamento que reside debe estar al *día en las cuotas de administración*.
 * De los 100.000 pesos de depósito, 40.000 pesos serán para la limpieza del BBQ, y este valor es *obligatorio*. Teniendo en cuenta esto, *No se debe limpiar el BBQ al finalizar*.`);
-                break; 
+                break;
             case '20':
                 await flowDynamic(`PQRS -  ✉️ Por favor, enviar un correo a 📧 oportociudadelaph@gmail.com con la siguiente información:
-    
+
 * 🏠 Número de apartamento
 * 📋 Descripción de la situación presentada en la copropiedad
 * 📎 Evidencia del suceso (fotos, videos, o documentos)`);
