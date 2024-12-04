@@ -71,22 +71,13 @@ fecha, destinatario, valor pagado referencia: # de apto.`);
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`);
                 break;
             case '4':
-                try {
-                    const mediaPath = "media/fecha_pago-oceana.png";
-                    if (fs.existsSync(mediaPath)) {
-                        await flowDynamic([
-                            {
-                                body: "Los pagos que se realicen después de la fecha de vencimiento, generan  facturas dobles e intereses y el pago se ve reflejado al mes siguiente.",
-                                media: mediaPath,
-                                delay: 0
-                            }
-                        ]);
-                    } else {
-                        console.error("Media file does not exist:", mediaPath);
+                await flowDynamic([
+                    {
+                        body: "Los pagos que se realicen después de la fecha de vencimiento, generan  facturas dobles e intereses y el pago se ve reflejado al mes siguiente.",
+                        media: "https://raw.githubusercontent.com/KalaxBDJ/phygestion-chatbot/refs/heads/main/media/fecha_pago-oceana.png",
+                        delay: 1000
                     }
-                } catch (error) {
-                    console.error("Error in flowDynamic:", error);
-                }
+                ]);
                 break;
             case '5':
                 await flowDynamic(
