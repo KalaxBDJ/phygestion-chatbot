@@ -74,8 +74,7 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
                 await flowDynamic([
                     {
                         body:"Los pagos que se realicen después de la fecha de vencimiento, generan  facturas dobles e intereses y el pago se ve reflejado al mes siguiente.",
-                        media:'https://raw.githubusercontent.com/KalaxBDJ/phygestion-chatbot/refs/heads/main/media/fecha_pago-oceana.png',
-                        delay:1000
+                        media:'https://raw.githubusercontent.com/KalaxBDJ/phygestion-chatbot/refs/heads/main/media/fecha_pago-oceana.png'
                     },
                     {
                         body:"Los pagos que se realicen después de la fecha de vencimiento, generan  facturas dobles e intereses y el pago se ve reflejado al mes siguiente."
