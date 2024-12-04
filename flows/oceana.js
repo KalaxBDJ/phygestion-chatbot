@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const fs = require('fs');
 
 const flowOceana = addKeyword(['NUEVOMILENIO'], { sensitive: true })
     .addAction(async (ctx, { gotoFlow }) => {
