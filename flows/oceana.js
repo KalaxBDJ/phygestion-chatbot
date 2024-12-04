@@ -73,6 +73,7 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
             case '4':
                 await flowDynamic([
                     {
+                        body: "fecha_pago-oceana.png",
                         media:'https://raw.githubusercontent.com/KalaxBDJ/phygestion-chatbot/refs/heads/main/media/fecha_pago-oceana.png'
                     },
                     {
