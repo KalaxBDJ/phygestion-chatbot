@@ -169,8 +169,8 @@ A continuación, se presenta el protocolo de mudanzas a seguir a partir de la fe
 *PISCINAS Y JACUZZI* 🏊‍♂️💦
 - *Lunes:* Mantenimiento 🔧
 - *Martes a viernes:* 10:00 am a 8:30 pm
-- *Sábado:* 10:00 am a 5:30 pm
-- *Domingos y festivos:* 11:00 am a 4:30 pm
+- *Sábado:* 6:00 am a 5:30 pm
+- *Domingos y festivos:* 6:00 am a 4:30 pm
 
 *NOTA:* Los lunes se realiza una limpieza profunda de la piscina 🧼. Si el lunes es festivo, esta limpieza se realiza el martes.
 
