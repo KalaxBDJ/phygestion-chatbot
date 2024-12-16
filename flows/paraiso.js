@@ -251,7 +251,7 @@ Envíe un correo electrónico a endosos@hemisferia.co solicitando el endoso de s
     * *Sábados*: 9:00 a.m. - 12:00 p.m.
 
 🪑 *Capacidad e Instalaciones*
-    * *BBQ incluye*: 6 mesas y 30 sillas.
+    * *BBQ incluye*: 4 mesas y 20 sillas.
     * *Aforo*: 20 a 30 personas aprox.
 
 🧹 *Entrega de Instalaciones*
