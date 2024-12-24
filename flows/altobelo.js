@@ -47,17 +47,13 @@ const flowAltobelo = addKeyword(['ALTOBELO'], { sensitive: true })
         const option = ctx.body.trim();
         switch (option) {
             case '1':
-                await flowDynamic(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
-
-Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtjToG-BGmGgxJq8A?e=1KjneI `);
+                await flowDynamic(`Solicita tus estados de cuenta aquí: altobelo.admon@gmail.com 📧`);
                 break;
             case '2':
                 await flowDynamic('Realiza la reclamación de tus estados de cuenta aquí: https://forms.gle/r2nrjaACALUCTuzH9 🕵️‍♂️');
                 break;
             case '3':
-                await flowDynamic(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
-
-Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`);
+                await flowDynamic(`Solicita tu factura aquí: altobelo.admon@gmail.com 📧`);
                 break;
             case '4':
                 await flowDynamic(`Reportar novedad de facturación aquí: https://forms.gle/SvtxCmv2DhbkTRn69`);
@@ -143,7 +139,7 @@ Las mudanzas se pueden realizar de *Lunes a Sábados* de ⏰ *8:00 AM* a *04:00 
 *Lunes a Domingo* (Incluye festivos): ⏰ 5:00 AM a 10:00 PM.
     
 *HORARIOS PISCINA* 🏊
-*Martes y Jueves*: 12:00 PM a 8:00 PM.
+*Martes y Jueves*: 12:00 PM a 5:00 PM  | 06:00 PM a 08:00 PM.
 *Miercoles, Viernes, Sábado, Domingo y Lunes* (si es festivo): 09:00 AM a 01:00 PM y 02:00 PM a 04:00 PM.
 📝 *Nota*: Los días lunes se realiza la limpieza profunda. Si el lunes es festivo, esta limpieza se realizará el martes.
 
@@ -201,7 +197,7 @@ Se entrega el mismo día del evento a las 8:00 AM en portería, limpio y aseado
 *DEVOLUCIÓN 🔄*:
 El BBQ debe devolverse en las mismas condiciones de limpieza.`);
                 break; 
-            case '2-':
+            case '20':
                 await flowDynamic(`PQRS: https://forms.gle/BuHDipXQFt3GyXQp6`);
                 break;
             case '21':
