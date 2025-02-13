@@ -9,6 +9,7 @@ const flowNuevoMilenio = require('./nuevoMilenio');
 const flowOceana = require('./oceana');
 const flowParaiso = require('./paraiso');
 const flowRoterdam = require('./roterdam');
+const flowAltea = require('./altea');
 
 //Deprecated
 // const flowAmatista = require('./amatista');
@@ -29,6 +30,7 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
         '*7.* NUEVO MILENIO 🏠',
         '*8.* OCEANA 🏠',
         '*9.* PUERTO PARAISO 🏠',
+        '*10.* ALTEA 🏠',
     ], { capture: true }, async (ctx, { gotoFlow, flowDynamic, fallBack }) => {
         const option = ctx.body.trim();
         if (option === '1' || option === 'MAJAGUA') {
@@ -49,6 +51,8 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
             return gotoFlow(flowOceana);
         } else if (option === '9' || option === ' PUERTO PARAISO') {
             return gotoFlow(flowParaiso);
+        } else if (option === '10' || option === 'ALTEA') {
+            return gotoFlow(flowAltea);
         }
         else {
             await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');

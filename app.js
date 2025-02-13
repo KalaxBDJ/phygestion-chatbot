@@ -15,10 +15,11 @@ const flowNuevoMilenio = require('./flows/nuevoMilenio');
 const flowOceana = require('./flows/oceana');
 const flowParaiso = require('./flows/paraiso');
 const flowRoterdam = require('./flows/roterdam');
+const flowAltea = require('./flows/altea');
 const { idleFlow } = require('./flows/idle-custom');
 
 //Deprecated
-const flowAmatista = require('./flows/amatista');
+// const flowAmatista = require('./flows/amatista');
 
 const {TOKEN, NUMBER_ID, VERIFY_TOKEN } = process.env
 
@@ -33,6 +34,7 @@ const flows = [
     flowOceana,
     flowParaiso,
     flowRoterdam,
+    flowAltea,
     flowRestartFinish,
     idleFlow
 ]

@@ -38,8 +38,6 @@ const flowRoterdam = addKeyword(['ROTERDAM'], { sensitive: true })
         '*21.* Reporte novedades (locativas) CORREO.',
         '*22.* Comunicarse con un asesor.',
         '*23.* Comunicarse con Portería.',
-        '*.* .',
-        
 
         '\n*Opciones de Navegación:* 🧭',
         '*24.* Volver al menú principal.',
@@ -289,7 +287,7 @@ Nota: Para solicitar la devolución del depósito deberá haber llenado el censo
             case '23':
                 await flowDynamic(`3103282775`);
                 break;
-            case '20':
+            case '24':
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
                 stop(ctx);
