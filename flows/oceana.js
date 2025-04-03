@@ -140,7 +140,7 @@ Para solicitar el *PAZ Y SALVO*, envía un correo a *conjuntooceana@gmail.com* c
                 await flowDynamic([
                     {
                         body: "mudanza-oceana.png",
-                        media: 'https://raw.githubusercontent.com/KalaxBDJ/phygestion-chatbot/refs/heads/main/media/mudanza-oceana.png'
+                        media: 'https://raw.githubusercontent.com/KalaxBDJ/phygestion-chatbot/refs/heads/main/media/mudanza-ocena.png'
                     },
                     {
                         body: `Después de programada la mudanza, recuerda diligenciar el censo para actualización de datos: 
