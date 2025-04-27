@@ -22,14 +22,14 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
     .addAnswer('¡Hola! 👋 Bienvenido a este *Chatbot*. ¡Espero que estés teniendo un gran día! 😊')
     .addAnswer([
         'Para empezar, por favor elige la unidad a la que perteneces:',
-        '*2.* MOSAICO 🏠',
-        '*3.* OPORTO 🏠',
-        '*4.* ALTOBELO 🏠',
-        '*5.* ROTERDAM 🏠',
-        '*6.* LISBOA 🏠',
-        '*7.* NUEVO MILENIO 🏠',
-        '*8.* OCEANA 🏠',
-        '*9.* PUERTO PARAISO 🏠',
+        '*1.* MOSAICO 🏠',
+        '*2.* OPORTO 🏠',
+        '*3.* ALTOBELO 🏠',
+        '*4.* ROTERDAM 🏠',
+        '*5.* LISBOA 🏠',
+        '*6.* NUEVO MILENIO 🏠',
+        '*7.* OCEANA 🏠',
+        '*8.* PUERTO PARAISO 🏠',
     ], { capture: true }, async (ctx, { gotoFlow, flowDynamic, fallBack }) => {
         const option = ctx.body.trim();
         if (option === '1' || option === 'MOSAICO') {
