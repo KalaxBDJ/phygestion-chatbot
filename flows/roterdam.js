@@ -265,8 +265,8 @@ El BBQ abrirá sus puertas desde las 10:00 am y deberá ser terminada a las 12:0
 •	El BBQ no será prestado para reuniones de tipo político y étnico de ninguna índole, solo se permitirán actos que no atenten contra la moral y las buenas costumbres de los residentes.
 •	La administración y el Consejo de Administración se reservan el derecho de prestar el BBQ a quienes hayan incurrido en conductas escandalosas o no hayan cumplido con el Reglamento.
 •	El cuidado y devolución en buen estado de los implementos que se encuentran en el BBQ será del propietario o residente que alquiló, también será el responsable de pagar cualquier daño o ausencia de elementos que se presente.
-•	Se deberá estar al día en la cuota de administración.
-
+•	Se deberá estar al día en la cuota de administración.`
+                    , `
 •	*PRECAUCIONES*
 •	*ANTES:*
 
@@ -334,8 +334,8 @@ Las piscina abrirán sus puertas de martes, jueves, sábados y domingos de 10:00
 •	Prohibido el ingreso a la piscina de personas con heridas, laceraciones o afecciones a la piel, vías respiratorias o enfermedades infectocontagiosas como gripe, conjuntivitis, eruptivas u otras.
 •	No se permite nadar en la noche sin luz o cuando la piscina está cerrada.
 •	Se prohíbe el ingreso de bicicletas, patines o elementos similares.
-•	Se prohíbe el tránsito fuera de las zonas húmedas con prendas mojadas, destilando agua o sin camisa, especialmente en ascensores.
-
+•	Se prohíbe el tránsito fuera de las zonas húmedas con prendas mojadas, destilando agua o sin camisa, especialmente en ascensores.`
+                    , `
 *SALÓN SOCIAL*
 
 El salón social será reservado por el residente del apartamento con mínimo cinco (5) días de anterioridad al evento por la plataforma de PH en línea, observando las siguientes condiciones:
@@ -355,8 +355,8 @@ El salón social será reservado por el residente del apartamento con mínimo ci
 •	No se permite el ingreso de mascotas y animales al área.
 •	Si un copropietario y/o residente hiciere una reserva y no utilizare el salón social en la fecha reservada, el valor de alquiler respectivo no se le devolverá la cuota, exceptuando los casos de fuerza mayor debidamente comprobados.
 •	El salón social no podrá ser utilizado como sala de velación.
-•	Debe permanecer cerrado si no está en uso.
-
+•	Debe permanecer cerrado si no está en uso.`
+                    , `
 *CANCHA*
 
 La cancha sintética abrirá sus puertas  8:00 Am a 10:00 Pm de domingo a jueves, los viernes y sábado hasta las 11 pm y deberá ser reservadas por los residentes de la copropiedad en portería con turnos de uso de máximo 1 hora. 
