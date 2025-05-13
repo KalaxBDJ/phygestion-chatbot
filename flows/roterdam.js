@@ -206,8 +206,8 @@ Viernes, sábado y domingo – lunes si es festivo
                 await flowDynamic(`roterdamph@gmail.com`);
                 break;
             case '17':
-                await flowDynamic(`*RESERVAS, ENTREGA Y NORMAS DE LAS ZONAS COMUNES*
-*Salón social de adultos reserva y entrega: *
+                await flowDynamic([`*RESERVAS, ENTREGA Y NORMAS DE LAS ZONAS COMUNES*
+*Salón social de adultos reserva y entrega:*
 •	Podrán ser utilizados por los propietarios o residentes.
 •	Se deberá reservar en portería.
 •	Solo se reservará el uso de cada mesa, el espacio del salón es de libre tránsito para los residentes.
@@ -224,7 +224,7 @@ Viernes, sábado y domingo – lunes si es festivo
 •	No se puede disponer las mesas de billar como mesas para comida, para sentarse
 •	sobre ellas, para las bebidas o elementos que dañen o deterioren las mesas, cualquier daño deberá ser asumido por el residente o propietario.
 •	Se prohíbe el ingreso de menores de edad.
-*Salón social de jovenes reserva y entrega: *
+*Salón social de jovenes reserva y entrega:*
 •	Podrán ser utilizados por los propietarios o residentes.
 •	El horario de disfrute será de domingo a jueves desde las 09:00 am hasta las 09:00 pm y los viernes, sábado y domingo si el día siguiente es festivo será desde las 09:00 am hasta las 11:00 pm.
 •	Se deberá reservar en portería.
@@ -246,9 +246,7 @@ Viernes, sábado y domingo – lunes si es festivo
 •	No se puede disponer las mesas de juegos como mesas para comida, para sentarse
 •	sobre ellas, para las bebidas o elementos que dañen o deterioren las mesas, cualquier daño deberá ser asumido por el residente o propietario.
 •	Se podrá escuchar y hacer uso de dispositivos de sonido en un volumen moderado 
-`);
-
-                await flowDynamic(`*BBQ:*
+`, `*BBQ:*
 
 El BBQ abrirá sus puertas desde las 10:00 am y deberá ser terminada a las 12:00 am. (sin excepción) viernes, sábados y domingos si el día siguiente es festivo. Los demás días deberá finalizar a las 10 pm del mismo día.  
 
@@ -269,7 +267,7 @@ El BBQ abrirá sus puertas desde las 10:00 am y deberá ser terminada a las 12:0
 •	El cuidado y devolución en buen estado de los implementos que se encuentran en el BBQ será del propietario o residente que alquiló, también será el responsable de pagar cualquier daño o ausencia de elementos que se presente.
 •	Se deberá estar al día en la cuota de administración.
 
-•	*PRECAUCIONES *
+•	*PRECAUCIONES*
 •	*ANTES:*
 
 •	Compruebe que no existan escapes, agrietamientos o fragilidad en la parrilla.
@@ -290,9 +288,7 @@ El BBQ abrirá sus puertas desde las 10:00 am y deberá ser terminada a las 12:0
 •	La presencia de orquestas, o el uso de sistemas o plantas de sonido de cualquier índole que superen los niveles de ruido máximos permitidos establecidos por la ley. 
 •	No se permite ningún tipo de decoración en ninguna zona del BBQ
 •	Es obligatorio el cuidado de los elementos que hacen parte del BBQ, por los usuarios que reservaron el espacio; la persona asignada por la administración para el control de ingreso y comportamiento en esta área tiene la facultad y obligación de exigir el estricto cumplimiento de este reglamento y debe notificar a la administración oportunamente toda irregularidad que se presente.  
-`);
-
-                await flowDynamic(`*GIMNASIO*
+`, `*GIMNASIO*
 El gimnasio será 24 horas. Se cerrará todos los días 2 horas (1:00 pm a 3:00 pm) para realizar aseo general, y recordando que este espacio es exclusivo para residentes o propietarios. 
 
 
@@ -312,9 +308,8 @@ El gimnasio será 24 horas. Se cerrará todos los días 2 horas (1:00 pm a 3:00 
 •	Los equipos no se podrán alquilar.
 •	Los daños causados por el uso indebido de alguno de los equipos de dotación del gimnasio deberán ser pagados por quien los haya generado.
 •	Las lesiones ocasionadas por una práctica incorrecta de ejercicios serán responsabilidad de cada usuario.
-•	En los horarios que esté el personal de mantenimiento o de aseo no se podrá hacer uso de la maquinaria o zona de limpieza hasta que finalice, es importante estos procedimientos en el gimnasio con el fin de mantener la zona en óptimas condiciones para todos los residentes. Se les pide a los residentes que hagan uso de este espacio el correcto depósito de las basuras o desperdicios.
-
-*PISCINA*
+•	En los horarios que esté el personal de mantenimiento o de aseo no se podrá hacer uso de la maquinaria o zona de limpieza hasta que finalice, es importante estos procedimientos en el gimnasio con el fin de mantener la zona en óptimas condiciones para todos los residentes. Se les pide a los residentes que hagan uso de este espacio el correcto depósito de las basuras o desperdicios.`
+                    , `*PISCINA*
 
 Las piscina abrirán sus puertas de martes, jueves, sábados y domingos de 10:00 am a 5:00 pm, miércoles y  viernes desde la 1:00 pm hasta las 8.00 pm y festivos de 10:00 am a 5:00 pm; los lunes se cierra por mantenimiento o el martes si el lunes es festivo. 
 
@@ -377,12 +372,12 @@ La cancha sintética abrirá sus puertas  8:00 Am a 10:00 Pm de domingo a jueves
 •	El número máximo de jugadores será de 10 personas, lo cual corresponde a 5 personas por equipo contando entre estas el arquero. 
 •	No está permitido el ingreso de ningún dispositivo de sonido a las canchas.
 
-*SANCIONES POR INCUMPLIMIENTO *
+*SANCIONES POR INCUMPLIMIENTO*
 
 •	Retiro de la cancha y cancelación de las reservas.
 •	Multa, según lo dispuesto en el manual de convivencia del valor equivalente a una cuota de administración o suspensión de derecho a la reserva para los residentes hasta por 3 meses. 
 •	Los apartamentos en mora de administración no podrán hacer uso del espacio; si de otro apartamento se hiciere la reserva para favorecer a los residentes de un apartamento en mora, se aplicará sanción de multa o suspensión de derecho a la reserva para los residentes hasta por 3 meses.
-`);
+`]);
                 break;
             case '18':
                 await flowDynamic(`*Información MUDANZA*
