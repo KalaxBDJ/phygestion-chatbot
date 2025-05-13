@@ -149,39 +149,41 @@ La cita debe realizarse en los horarios de atención de la administración para 
 *Para inquilinos:* Debes presentar una carta de autorización de la inmobiliaria o propietario para la entrada o salida.`)
                 break;
             case '15':
-                await flowDynamic(`🗓️ *HORARIO DE ATENCIÓN PRESENCIAL*
+                await flowDynamic(`*HORARIO DE ATENCIÓN PRESENCIAL OFICINA DE ADMINISTRACIÓN*: 
 
-*Lunes:* 2:00 p.m. a 5:00 p.m.
-*Martes:* 8:00 a.m. a 1:00 p.m.
-*Miércoles:* ❌ No hay atención presencial
-*Jueves:* ❌ No hay atención presencial
-*Viernes:* 10:00 a.m. a 1:00 p.m.
-*Sábado (2 al mes):* 10:00 a.m. a 12:00 p.m.
+*LUNES*: 2:00 PM A 5:00PM 
+*MIERCOLES*: 1:00PM A 8:00PM 
+*VIERNES*: 10:00AM A 1:00PM 
+*SABADOS*: (2 AL MES) 10 AM A 12:00 AM
 
-📞 *HORARIO DE ATENCIÓN TELEFÓNICA*
+*NO HAY ATENCIÓN TELEFÓNICA*
 
-*Lunes:* 2:00 p.m. a 5:00 p.m.
-*Martes:* 8:00 a.m. a 1:00 p.m.
-*Miércoles:* ❌ No hay atención telefónica
-*Jueves:* ❌ No hay atención telefónica
-*Viernes:* 10:00 a.m. a 1:00 p.m.`);
+*NOTA*: importante tener presente que, los días que no se tiene atención presencial, igualmente el personal administrativo está en la copropiedad en ejecución de sus funciones.
+`);
                 break;
             case '16':
-                await flowDynamic(`*HORARIOS DEL GIMNASIO* 🏋️
-❗Actualmente, el gimnasio no se encuentra disponible. 
+                await flowDynamic(`*HORARIOS DE ZONAS COMUNES*
 
-*HORARIOS DE LA PISCINA* 🏊
-❗Actualmente, el gimnasio no se encuentra disponible. 
+En el momento no tenemos habilitado el Gimnasio, pero estamos en proceso de licitación para la apertura del mismo.  
 
-*HORARIOS SALON SOCIAL*
-El salón social se puede reservar de domingo a viernes, de 9:00 a.m. a 10:00 p.m.⏰  
-Los sábados y días previos a festivos, el horario de reserva será de 9:00 a.m. a 11:59 p.m.⏰`)
+*HORARIO PISCINA*:
+
+El horario de la piscina es el siguiente:
+
+*Lunes*: sin apertura por mantenimiento 
+*Martes- jueves*: 10:00 am a 5:00pm 
+*Miércoles- viernes*: 1:00pm a 8:00pm
+*Sábado- domingo y festivos*: 10:00 am a 5:30pm
+`)
                 break;
             case '17':
                 await flowDynamic('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/file/d/1XpaJ0T_jLyTIz9ZKGSNabALGL5AE2IlO/view?usp=sharing 📘');
                 break;
             case '18':
-                await flowDynamic('Consulta el Manual de Convivencia aquí: PENDIENTE 📘') //TODO: NO contamos con manual de convivencia, su realización está al 50%, pronto lo tendremos. 
+                await flowDynamic(`Consulta el Manual de Convivencia aquí: https://drive.google.com/file/d/1Q2a2v5GzQVQfiV50RU_I1PAPPQXMcFCR/view?usp=drive_link 📘
+                    
+Ten en cuenta que la atención presencial y los medios mencionados son los únicos canales para atender tus solicitudes.
+`);
                 break;
             case '19':
                 await flowDynamic('Diligencia el censo poblacional aquí: https://docs.google.com/document/d/1IOIp1DJ1jo1KEDNf_sb0WgRQi9Hqnhv6/edit?usp=sharing&ouid=111633229810407995742&rtpof=true&sd=true 📝');

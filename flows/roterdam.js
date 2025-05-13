@@ -128,7 +128,7 @@ LUNES FESTIVO
 
 NOTA: Los días lunes se realiza la limpieza profunda de la piscina, si el lunes es festivo esta limpieza para a realizarse los días martes
 
-*HORARIO TURCO *
+*HORARIO TURCO*
 Miércoles y viernes
 1:00 PM A 8:00 PM 
 Martes, jueves, sábado, Domingo y lunes 
