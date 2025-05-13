@@ -246,8 +246,9 @@ Viernes, sábado y domingo – lunes si es festivo
 •	No se puede disponer las mesas de juegos como mesas para comida, para sentarse
 •	sobre ellas, para las bebidas o elementos que dañen o deterioren las mesas, cualquier daño deberá ser asumido por el residente o propietario.
 •	Se podrá escuchar y hacer uso de dispositivos de sonido en un volumen moderado 
+`);
 
-*BBQ:*
+                await flowDynamic(`*BBQ:*
 
 El BBQ abrirá sus puertas desde las 10:00 am y deberá ser terminada a las 12:00 am. (sin excepción) viernes, sábados y domingos si el día siguiente es festivo. Los demás días deberá finalizar a las 10 pm del mismo día.  
 
@@ -289,8 +290,9 @@ El BBQ abrirá sus puertas desde las 10:00 am y deberá ser terminada a las 12:0
 •	La presencia de orquestas, o el uso de sistemas o plantas de sonido de cualquier índole que superen los niveles de ruido máximos permitidos establecidos por la ley. 
 •	No se permite ningún tipo de decoración en ninguna zona del BBQ
 •	Es obligatorio el cuidado de los elementos que hacen parte del BBQ, por los usuarios que reservaron el espacio; la persona asignada por la administración para el control de ingreso y comportamiento en esta área tiene la facultad y obligación de exigir el estricto cumplimiento de este reglamento y debe notificar a la administración oportunamente toda irregularidad que se presente.  
+`);
 
-*GIMNASIO*
+                await flowDynamic(`*GIMNASIO*
 El gimnasio será 24 horas. Se cerrará todos los días 2 horas (1:00 pm a 3:00 pm) para realizar aseo general, y recordando que este espacio es exclusivo para residentes o propietarios. 
 
 
