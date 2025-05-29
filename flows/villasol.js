@@ -39,7 +39,7 @@ const flowVillasol = addKeyword(['VILLASOL'], { sensitive: true })
 
         '\n🛠️ *Reportes y Novedades:*',
         '*20.* Información sanciones de parqueadero.',
-        '*21.* Reporte de situaciones en la copropiedad.',
+        '*21.* PQRSF.',
         '*22.* Reporte de daños locativos.',
 
         '\n📞 *Contactos Directos:*',
