@@ -236,6 +236,7 @@ Para el ingreso a la piscina se debe tener los fichos, para adquirirlos debes ha
                 await flowDynamic(`Canal de WhatsApp
 https://whatsapp.com/channel/0029VbA7upuA2pL2kWNXvS3V 
 `)
+                break;
             case '26':
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
