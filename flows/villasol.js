@@ -63,14 +63,19 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
                 await flowDynamic(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`)
+                break;
             case '3':
                 await flowDynamic(`Si paga después de la fecha de vencimiento de la factura el pago se verá reflejado al siguiente mes.`)
+                break;
             case '4':
                 await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com , con el número de apartamento y el mes de pago que se efectuó.`)
+                break;
             case '5':
                 await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento. Especificar la novedad de facturación para la debida corrección si es el caso.`)
+                break;
             case '6':
                 await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento y el día de pago que se efectuó.`)
+                break;
             case '7':
                 await flowDynamic(`*MEDIO DE PAGO CUOTAS DE ADMINISTRACIÓN*
 
@@ -81,6 +86,7 @@ CONVENIO 65047 O 65072.
 
 2.Directamente en la oficina de administración`
                 )
+                break;
             case '8':
                 await flowDynamic(`*Cuando se envíe el soporte a administración, especificar para qué es el pago.*
 *TAG VEHICULAR*
@@ -99,6 +105,7 @@ VILLA SOL ☀️ EN LA CASILLA DE REFERENCIA NUMERO DE APTO
 1. El número de cuenta es AHORROS BANCOLOMBIA 26863798280
 VILLA SOL ☀️ EN LA CASILLA DE REFERENCIA NUMERO DE APTO`
                 )
+                break;
             case '9':
                 await flowDynamic(`Deben enviar un correo a admonvillasol@gmail.com con la siguiente información para solicitar el PAZ Y SALVO. Deberá tener en cuenta que el PAZ Y SALVO después de solicitarlo se le remitirá cuando hayan cumplido 3 días hábiles.
 -	Nombre Completo
@@ -106,6 +113,7 @@ VILLA SOL ☀️ EN LA CASILLA DE REFERENCIA NUMERO DE APTO`
 -	Cédula
 -	Enviar el último soporte de pago`
                 )
+                break;
             case '10':
                 await flowDynamic(`*HORARIO TURCO*
 Martes a domingo desde las 10:00 hasta las 5:30 PM
@@ -139,6 +147,7 @@ Todos los días desde las
 Todos los días desde las
 5:00 AM A 10:00 PM – 12:00 A 1:00 SE HACE ASEO`
                 )
+                break;
             case '11':
                 await flowDynamic(`*HORARIO ADMINISTRACIÓN*
 *LUNES, MARTES, MIERCOLES Y VIERNES*
@@ -156,14 +165,19 @@ Para el *registro facial*:
 
 En la oficina de la administración.`
                 )
+                break;
             case '12':
                 await flowDynamic(`Puede ver el Reglamento de Propiedad Horizontal en el siguiente enlace => https://drive.google.com/file/d/1TRAt8Dww2CkXko8dzwNa6aQNNrqrogOW/view?usp=sharing `)
+                break;
             case '13':
                 await flowDynamic(`Puede ver el Manual de Convivencia en el siguiente enlace => https://drive.google.com/file/d/1iDfszHqtJszPOG0PP2DYW2uHPt_qB8Wf/view?usp=sharing`)
+                break;
             case '14':
                 await flowDynamic(`Puedes diligenciar el censo poblacional en el siguiente enlace => https://docs.google.com/forms/d/e/1FAIpQLSdplg4nN_zXnt4hyhQIKdHMzOiRn6BLDA5vmvYTMRKIAlxZQA/viewform?usp=sf_link `)
+                break;
             case '15':
                 await flowDynamic(`Correo electrónico: admonvillasol@gmail.com`)
+                break;
             case '16':
                 await flowDynamic(`*RESERVA Y COSTO DEL SALON SOCIAL*
 •	Valor alquiler 100.000 (transferir a cuenta administración) 
@@ -183,6 +197,7 @@ En la oficina de la administración.`
 •	13 sillas.
 •	Me indica fecha para revisar disponibilidad`
                 )
+                break;
             case '17':
                 await flowDynamic(`*TRASTEOS Y REFORMAS DE APARTAMENTOS:*
 NOTA: Se considera trasteo, todo movimiento (entrada o salida) de muebles y enseres, cualquiera que sea su tamaño.
@@ -190,25 +205,33 @@ NOTA: Se considera trasteo, todo movimiento (entrada o salida) de muebles y ense
 *2.* Se debe informar a arrendatarios o compradores del inmueble el horario para la realización de trasteos y cuando se vaya a hacer un trasteo debe informarse por escrito a la administración y con 24 horas de anticipación, para la respectiva verificación.
 *3.* Se debe dejar un depósito de 100.000 pesos en efectivo en la oficina de la administración con 1 día de anterioridad.`
                 )
+                break;
             case '18':
                 await flowDynamic(`VALIDAR FECHAS DE PUBLICACION CON ADMINISTRACIÓN
 Para el ingreso a la piscina se debe tener los fichos, para adquirirlos debes hacer el pago de ellos, tienen un *valor de 15.000 pesos* que se transfieren a la cuenta de la copropiedad AHORROS BANCOLOMBIA *26863798280* VILLA SOL`
                 )
+                break;
             case '19':
                 await flowDynamic(`Para la publicidad se debe hacer un pago de 15.000 pesos transferido a la cuenta de la copropiedad AHORROS BANCOLOMBIA 26863798280, me envías el comprobante y ponemos su publicidad en el TV de anuncios por 15 días.`)
+                break;
             case '20':
                 await flowDynamic(`Deben enviar un correo a admonvillasol@gmail.com  con la siguiente información para solicitar las evidencias.
 -	Nombre Completo
 -	APARTAMENTO`
                 )
+                break;
             case '21':
                 await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento, la situación presentada en la copropiedad y la evidencia de dicho suceso.`)
+                break;
             case '22':
                 await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento, la novedad vista por su parte y la evidencia de dicho daño.`)
+                break;
             case '23':
                 await flowDynamic(`Alexis Jiménez – Asistente administrativo 3194334464`)
+                break;
             case '24':
                 await flowDynamic(`Portería – 3017774625`)
+                break;
             case '25':
                 await flowDynamic(`Canal de WhatsApp
 https://whatsapp.com/channel/0029VbA7upuA2pL2kWNXvS3V 
