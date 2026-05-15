@@ -262,8 +262,8 @@ https://forms.gle/KufCvrShz2y2hD5w8`);
                 break;
             case '22':
                 await flowDynamic(`*Comunicación con un Asesor* 📞
-*Asistente Administrativa:* Angela Serna
-📱 3014448877`);
+*Asistente Administrativa:* Katty Salas
+📱 3014468877`);
                 break;
             case '23':
                 await flowDynamic(`*Número de Portería* 🛡️

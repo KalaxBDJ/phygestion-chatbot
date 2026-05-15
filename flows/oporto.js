@@ -140,7 +140,8 @@ SABADO (2 al mes)
 *Lunes a Domingo* (Incluye festivos): ⏰ 5:00 AM a 9:00 PM.
 
 *HORARIOS PISCINA* 🏊
-*Martes a Viernes*: 2:00 PM a 8:00 PM.
+*Martes y Jueves*: 12:00PM a 06:00 PM.
+*Miercoles y Viernes*: 01:00PM a 07:00 PM.
 *Sábado, Domingo y Lunes* (si es festivo): 10:30 AM a 6:00 PM.
 📝 *Nota*: Los días lunes se realiza la limpieza profunda. Si el lunes es festivo, esta limpieza se realizará el martes.
 
@@ -198,7 +199,8 @@ Puede realizar la reserva en el siguiente enlace => https://www.phenlinea.info/
 * 📲 La reserva se debe realizar a través de *PH en línea*.
 
 *ENTREGA* 📅
-Se entrega de *Lunes a Domingo* (Incluye festivos): 3:00 PM a 12:00 AM
+*Viernes y Sabado:* 10:00PM a 11:00PM
+*Domingo a Jueves:* 03:00PM A 09:00PM
 
 *✅ Requisitos*:
 * El apartamento que reside debe estar al *día en las cuotas de administración*.

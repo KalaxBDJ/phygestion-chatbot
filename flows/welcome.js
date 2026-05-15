@@ -5,15 +5,8 @@ const flowOporto = require('./oporto');
 const flowAltobelo = require('./altobelo');
 const flowLisboa = require('./lisboa');
 const flowNuevoMilenio = require('./nuevoMilenio');
-const flowOceana = require('./oceana');
-const flowParaiso = require('./paraiso');
 const flowRoterdam = require('./roterdam');
 const flowVillasol = require('./villasol');
-
-//Deprecated
-//const flowAltea = require('./altea');
-//const flowMajagua = require('./majagua');
-// const flowAmatista = require('./amatista');
 
 const flowWelcome = addKeyword(EVENTS.WELCOME)
     .addAction(async (ctx, { gotoFlow }) => {
@@ -29,16 +22,14 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
         '*4.* ROTERDAM 🏠',
         '*5.* LISBOA 🏠',
         '*6.* NUEVO MILENIO 🏠',
-        '*7.* OCEANA 🏠',
-        '*8.* PUERTO PARAISO 🏠',
-        '*9.* VILLASOL 🏠',
+        '*7.* VILLASOL 🏠',
     ], { capture: true }, async (ctx, { gotoFlow, flowDynamic, fallBack }) => {
         const option = ctx.body.trim();
         if (option === '1' || option === 'MOSAICO') {
             return gotoFlow(flowMosaico);
-        }else if (option === '2' || option === 'OPORTO') {
+        } else if (option === '2' || option === 'OPORTO') {
             return gotoFlow(flowOporto);
-        }else if (option === '3' || option === 'ALTOBELO') {
+        } else if (option === '3' || option === 'ALTOBELO') {
             return gotoFlow(flowAltobelo);
         } else if (option === '4' || option === 'ROTERDAM') {
             return gotoFlow(flowRoterdam);
@@ -46,11 +37,7 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
             return gotoFlow(flowLisboa);
         } else if (option === '6' || option === 'NUEVO MILENIO') {
             return gotoFlow(flowNuevoMilenio);
-        } else if (option === '7' || option === 'OCEANA') {
-            return gotoFlow(flowOceana);
-        } else if (option === '8' || option === ' PUERTO PARAISO') {
-            return gotoFlow(flowParaiso);
-        } else if (option === '9' || option === 'VILLASOL') {
+        } else if (option === '7' || option === 'VILLASOL') {
             return gotoFlow(flowVillasol);
         } else {
             await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
