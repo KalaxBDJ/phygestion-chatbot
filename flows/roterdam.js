@@ -182,10 +182,13 @@ Viernes, sábado y domingo – lunes si es festivo
                 break;
             case '11':
                 await flowDynamic(`*HORARIO ADMINISTRACIÓN*
-*LUNES MIERCOLES*
-8:00 AM A 8:00 PM 
-*MARTES, JUEVES Y VIERNES*
-8:00 AM A 1:00 PM Y 2:00 PM 5:00 PM 
+*LUNES*
+11:00 AM A 07:00 PM
+*NOTA:* Cuando es lunes festivo se traslada el horario al dia miercoles.
+
+*MARTES, MIERCOLES, JUEVES Y VIERNES*
+08:00 AM A 1:00 PM Y 2:00 PM A 5:00 PM
+
 *SABADO*
 8:00 AM A 12:00 PM
 `);

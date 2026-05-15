@@ -139,12 +139,11 @@ Las mudanzas se pueden realizar de *Lunes a Sábados* de ⏰ *8:00 AM* a *04:00 
 *Lunes a Domingo* (Incluye festivos): ⏰ 5:00 AM a 10:00 PM.
     
 *HORARIOS PISCINA* 🏊
-*Martes y Jueves*: 12:00 PM a 5:00 PM  | 06:00 PM a 08:00 PM.
-*Miercoles, Viernes, Sábado, Domingo y Lunes* (si es festivo): 09:00 AM a 01:00 PM y 02:00 PM a 04:00 PM.
+*Martes a Domingo*: 09:00 am a 1:00 PM  | 02:00 PM a 04:00 PM.
 📝 *Nota*: Los días lunes se realiza la limpieza profunda. Si el lunes es festivo, esta limpieza se realizará el martes.
 
 *HORARIOS TURCO* 🧖
-*Todos los días*: ⏰ 7:00 AM A 9:00 AM – 1:00 PM A 3:00 PM – 7:00 PM A 9:00 PM .
+*Martes a Domingo*: ⏰ 09:00 AM A 11:00 AM – 02:00 PM A 04:00 PM – 06:00 PM A 08:00 PM .
 📝 *Nota*: Los días lunes se realiza la limpieza profunda. Si el lunes es festivo, esta limpieza se realizará el martes.
 
 *HORARIOS SALÓN SOCIAL* 🎉

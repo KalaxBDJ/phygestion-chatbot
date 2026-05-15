@@ -172,7 +172,9 @@ El horario de la piscina es el siguiente:
 
 *Lunes*: sin apertura por mantenimiento 
 *Martes- jueves*: 10:00 am a 5:00pm 
-*Miércoles- viernes*: 1:00pm a 8:00pm
+*Miercoles: 10:00 am a 4:00pm
+*Jueves: 11:00 am a 6:00pm
+*Viernes: 11:00 am a 6:00pm
 *Sábado- domingo y festivos*: 10:00 am a 5:30pm
 `)
                 break;
