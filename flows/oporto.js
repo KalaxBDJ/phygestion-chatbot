@@ -146,7 +146,8 @@ SABADO (2 al mes)
 📝 *Nota*: Los días lunes se realiza la limpieza profunda. Si el lunes es festivo, esta limpieza se realizará el martes.
 
 *HORARIOS TURCO Y JACUZZI* 🧖
-*Martes a Viernes*: 2:00 PM a 8:00 PM.
+*Martes y Jueves*: 12:00PM a 06:00 PM.
+*Miercoles y Viernes*: 01:00PM a 07:00 PM.
 *Sábado, Domingo y Lunes* (si es festivo): 10:30 AM a 6:00 PM.
 📝 *Nota*: Los días lunes se realiza la limpieza profunda. Si el lunes es festivo, esta limpieza se realizará el martes.
 
@@ -199,7 +200,7 @@ Puede realizar la reserva en el siguiente enlace => https://www.phenlinea.info/
 * 📲 La reserva se debe realizar a través de *PH en línea*.
 
 *ENTREGA* 📅
-*Viernes y Sabado:* 10:00PM a 11:00PM
+*Viernes y Sabado:* 03:00PM a 11:00PM
 *Domingo a Jueves:* 03:00PM A 09:00PM
 
 *✅ Requisitos*:
