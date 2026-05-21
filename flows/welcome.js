@@ -1,5 +1,6 @@
 const { addKeyword, EVENTS } = require('@bot-whatsapp/bot');
 const { start } = require('./idle-custom');
+const usage = require('../db/usage');
 const flowMosaico = require('./mosaico');
 const flowOporto = require('./oporto');
 const flowAltobelo = require('./altobelo');
@@ -26,18 +27,25 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
     ], { capture: true }, async (ctx, { gotoFlow, flowDynamic, fallBack }) => {
         const option = ctx.body.trim();
         if (option === '1' || option === 'MOSAICO') {
+            usage.increment('MOSAICO');
             return gotoFlow(flowMosaico);
         } else if (option === '2' || option === 'OPORTO') {
+            usage.increment('OPORTO');
             return gotoFlow(flowOporto);
         } else if (option === '3' || option === 'ALTOBELO') {
+            usage.increment('ALTOBELO');
             return gotoFlow(flowAltobelo);
         } else if (option === '4' || option === 'ROTERDAM') {
+            usage.increment('ROTERDAM');
             return gotoFlow(flowRoterdam);
         } else if (option === '5' || option === 'LISBOA') {
+            usage.increment('LISBOA');
             return gotoFlow(flowLisboa);
         } else if (option === '6' || option === 'NUEVO MILENIO') {
+            usage.increment('NUEVO MILENIO');
             return gotoFlow(flowNuevoMilenio);
         } else if (option === '7' || option === 'VILLASOL') {
+            usage.increment('VILLASOL');
             return gotoFlow(flowVillasol);
         } else {
             await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
