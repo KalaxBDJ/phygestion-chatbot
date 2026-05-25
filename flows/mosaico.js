@@ -153,7 +153,7 @@ La cita debe realizarse en los horarios de atención de la administración para 
 
 *LUNES*     : 2:00pm - 6:00pm 
 *MARTES*    : 8:00am - 12:00mm
-*MIERCOLES* : 3:00pm - 
+*MIERCOLES* : 3:00pm - 7:00pm
 *JUEVES*    : 9:00am - 1:00pm 
 *VIERNES*   : 2:00pm - 6:00pm 
 
