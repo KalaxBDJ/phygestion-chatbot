@@ -151,14 +151,13 @@ La cita debe realizarse en los horarios de atención de la administración para 
             case '15':
                 await flowDynamic(`*HORARIO DE ATENCIÓN PRESENCIAL OFICINA DE ADMINISTRACIÓN*: 
 
-*LUNES*: 2:00 PM A 5:00PM 
-*MIERCOLES*: 1:00PM A 8:00PM 
-*VIERNES*: 10:00AM A 1:00PM 
-*SABADOS*: (2 AL MES) 10 AM A 12:00 AM
+*LUNES*     : 2:00pm - 6:00pm 
+*MARTES*    : 8:00am - 12:00mm
+*MIERCOLES* : 3:00pm - 7:00pm
+*JUEVES*    : 9:00am - 1:00pm 
+*VIERNES*   : 2:00pm - 6:00pm 
 
-*NO HAY ATENCIÓN TELEFÓNICA*
-
-*NOTA*: importante tener presente que, los días que no se tiene atención presencial, igualmente el personal administrativo está en la copropiedad en ejecución de sus funciones.
+Si se encuentra en otro país o desea una cita virtual con la administración, por favor solicitela al Whatsapp 3183609724
 `);
                 break;
             case '16':
