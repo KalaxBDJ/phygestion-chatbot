@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { setLastFlow } = require('./last-flow');
 
 
 const flowVillasol = addKeyword(['VILLASOL'], { sensitive: true })
@@ -247,7 +248,7 @@ https://whatsapp.com/channel/0029VbA7upuA2pL2kWNXvS3V
                 await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
                 return fallBack();
         }
-        lastFlow = flowVillasol
+        setLastFlow(ctx, flowVillasol);
         return gotoFlow(flowRestartFinish);
     })
 

@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { setLastFlow } = require('./last-flow');
 
 
 const flowMosaico = addKeyword(['MOSAICO'], { sensitive: true })
@@ -223,7 +224,7 @@ Para realizar cualquier petición, queja, reclamo, solicitud, consulta sobre fac
                 await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
                 return fallBack(); //Vuelve a presentar las opciones
         }
-        lastFlow = flowMosaico;
+        setLastFlow(ctx, flowMosaico);
         return gotoFlow(flowRestartFinish);
     });
 

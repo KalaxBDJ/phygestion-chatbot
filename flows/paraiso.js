@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { setLastFlow } = require('./last-flow');
 
 
 const flowParaiso = addKeyword(['PARAISO'], { sensitive: true })
@@ -326,7 +327,7 @@ Para gestionar el retiro de escombros, madera, muebles o electrodomésticos, pue
                 await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
                 return fallBack(); //Vuelve a presentar las opciones
         }
-        lastFlow = flowParaiso;
+        setLastFlow(ctx, flowParaiso);
         return gotoFlow(flowRestartFinish);
     });
 

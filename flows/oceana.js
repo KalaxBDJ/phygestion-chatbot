@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { setLastFlow } = require('./last-flow');
 const fs = require('fs');
 
 const flowOceana = addKeyword(['NUEVOMILENIO'], { sensitive: true })
@@ -403,7 +404,7 @@ Para asistencia, puedes comunicarte con nuestra asistente administrativa:
                 await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
                 return fallBack(); //Vuelve a presentar las opciones
         }
-        lastFlow = flowOceana;
+        setLastFlow(ctx, flowOceana);
         return gotoFlow(flowRestartFinish);
     })
 
