@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { setLastFlow } = require('./last-flow');
 
 
 const flowAltea = addKeyword(['ALTEA'], { sensitive: true })
@@ -233,7 +234,7 @@ Nota: Para solicitar la devolución del depósito deberá haber llenado el censo
                 await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
                 return fallBack(); //Vuelve a presentar las opciones
         }
-        lastFlow = flowAltea;
+        setLastFlow(ctx, flowAltea);
         return gotoFlow(flowRestartFinish);
     })
 

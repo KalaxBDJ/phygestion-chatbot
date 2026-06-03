@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { setLastFlow } = require('./last-flow');
 
 
 const flowOporto = addKeyword(['OPORTO'], { sensitive: true })
@@ -236,7 +237,7 @@ Puede realizar la reserva en el siguiente enlace => https://www.phenlinea.info/
                 await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
                 return fallBack(); //Vuelve a presentar las opciones
         }
-        lastFlow = flowOporto;
+        setLastFlow(ctx, flowOporto);
         return gotoFlow(flowRestartFinish);
     })
 

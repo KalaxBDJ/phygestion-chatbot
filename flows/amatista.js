@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { setLastFlow } = require('./last-flow');
 
 const flowAmatista = addKeyword(['AMATISTA'], { sensitive: true })
     .addAction(async (ctx, { gotoFlow }) => {
@@ -233,7 +234,7 @@ https://docs.google.com/document/d/1dl0yeWULxQ_lMBUOonDQP3R2bEsnLaL6/edit?usp=dr
                 await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
                 return fallBack(); //Vuelve a presentar las opciones
         }
-        lastFlow = flowAmatista;
+        setLastFlow(ctx, flowAmatista);
         return gotoFlow(flowRestartFinish);
     })
 

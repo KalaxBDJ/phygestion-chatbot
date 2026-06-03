@@ -1,6 +1,7 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { setLastFlow } = require('./last-flow');
 
 
 const flowMajagua = addKeyword(['MAJAGUA'], { sensitive: true })
@@ -178,7 +179,7 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
                 await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
                 return fallBack(); //Vuelve a presentar las opciones
         }
-        lastFlow = flowMajagua;
+        setLastFlow(ctx, flowMajagua);
         return gotoFlow(flowRestartFinish);
     })
 
