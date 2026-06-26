@@ -4,6 +4,12 @@ const { createBot, createProvider, createFlow } = require('@bot-whatsapp/bot')
 const MetaProvider = require('@bot-whatsapp/provider/meta')
 const MockAdapter = require('@bot-whatsapp/database/mock')
 
+//Dashboard dependencies
+const express = require('express')
+const path = require('path')
+const usage = require('./db/usage')
+
+// flows
 const flowWelcome = require('./flows/welcome');
 const flowRestartFinish = require('./flows/restart');
 const flowMajagua = require('./flows/majagua');
@@ -19,9 +25,7 @@ const flowAltea = require('./flows/altea');
 const flowVillasol = require('./flows/villasol');
 const { idleFlow } = require('./flows/idle-custom');
 
-//Deprecated
-// const flowAmatista = require('./flows/amatista');
-
+// env
 const {TOKEN, NUMBER_ID, VERIFY_TOKEN } = process.env
 
 const flows = [
@@ -58,6 +62,12 @@ const main = async () => {
         database: adapterDB,
     })
 
+    // --- Dashboard (modular)
+    const web = express();
+    const dashboard = require('./dashboard');
+    const PORT = process.env.DASHBOARD_PORT || 3001;
+    const UNITS = ['MOSAICO','OPORTO','ALTOBELO','ROTERDAM','LISBOA','NUEVO MILENIO','VILLASOL'];
+    dashboard(web, usage, { port: PORT, units: UNITS });
 }
 
 main()
