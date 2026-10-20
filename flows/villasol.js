@@ -35,21 +35,20 @@ const flowVillasol = addKeyword(['VILLASOL'], { sensitive: true })
         '*11.* Horarios de atención en administración.',
         '*17.* Normas para mudanzas y reformas.',
         '*18.* Información sobre fichos de piscina.',
-        '*19.* Publicidad en pantalla de anuncios.',
         '*16.* Reservas y costos del salón social y BBQ.',
 
         '\n🛠️ *Reportes y Novedades:*',
-        '*20.* Información sanciones de parqueadero.',
-        '*21.* PQRSF.',
-        '*22.* Reporte de daños locativos.',
+        '*19.* Información sanciones de parqueadero.',
+        '*20.* PQRSF.',
+        '*21.* Reporte de daños locativos.',
 
         '\n📞 *Contactos Directos:*',
-        '*23.* Asesor',
-        '*24.* Portería.',
-        '*25.* Canal oficial de WhatsApp.',
+        '*22.* Asesor',
+        '*23.* Portería.',
+        '*24.* Canal y comunidad Villasol.',
 
         '\n🧭 *Navegación:*',
-        '*26.* Volver al menú principal.',
+        '*25.* Volver al menú principal.',
         '*0.* Terminar la conversación.'
     ], { capture: true }, async (ctx, { flowDynamic, fallBack, endFlow, gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
@@ -78,33 +77,35 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
                 await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento y el día de pago que se efectuó.`)
                 break;
             case '7':
-                await flowDynamic(`*MEDIO DE PAGO CUOTAS DE ADMINISTRACIÓN*
+                await flowDynamic(`*MEDIOS DE PAGO ADMINISTRACIÓN*
 
-1.El número de cuenta es AHORROS BANCOLOMBIA 26863798280
-VILLA SOL ☀️ EN LA CASILLA DE REFERENCIA NUMERO DE APTO
+💻 *OPCIÓN 1 – PAGO EN LÍNEA POR JELPIT*
+🔗 PAGO ADMINISTRACIÓN O ZONAS COMUNES:
+https://web-conjuntos.jelpit.com/pagar-mi-administracion#/?id=6aa45e77ff18e91262979a3e
 
-CONVENIO 65047 O 65072.
+🏦 *OPCIÓN 2 – PAGO PRESENCIAL EN BANCO*
+En caso de no realizar el pago por medio del enlace de PSE/JELPIT, también puede dirigirse a un banco en convenio con Davivienda y realizar el pago utilizando:
+🔢 Convenio: 1669118
+🏠 Referencia: número del apartamento
 
-2.Directamente en la oficina de administración`
+Por favor, al momento de realizar el pago, verifique que la referencia corresponda al número de su apartamento, para facilitar la correcta identificación y aplicación del pago.`
                 )
                 break;
             case '8':
-                await flowDynamic(`*Cuando se envíe el soporte a administración, especificar para qué es el pago.*
-*TAG VEHICULAR*
-1. El número de cuenta es AHORROS BANCOLOMBIA 26863798280
-VILLA SOL ☀️ EN LA CASILLA DE REFERENCIA NUMERO DE APTO
+                await flowDynamic(`🔗 *PAGO ADMINISTRACIÓN O ZONAS COMUNES:*
+https://web-conjuntos.jelpit.com/pagar-mi-administracion#/?id=6aa45e77ff18e91262979a3e
 
-*FICHOS DE PISCINA*
-1. El número de cuenta es AHORROS BANCOLOMBIA 26863798280
-VILLA SOL ☀️ EN LA CASILLA DE REFERENCIA NUMERO DE APTO
+📌 *REFERENCIAS DE PAGO:*
+🏠 Administración: ingresar el número del apartamento.
+🏛️ Salón Social: 2222
+🔥 BBQ: 3333
+🏊 Fichos de piscina: 4444
+🚗 TAG: 5555
 
-*SALON SOCIAL*
-1. El número de cuenta es AHORROS BANCOLOMBIA 26863798280
-VILLA SOL ☀️ EN LA CASILLA DE REFERENCIA NUMERO DE APTO
+✅ El pago por medio de JELPIT no genera ningún cobro adicional.
+🏦 Puede realizar el pago desde diferentes entidades bancarias.
 
-*BBQ*
-1. El número de cuenta es AHORROS BANCOLOMBIA 26863798280
-VILLA SOL ☀️ EN LA CASILLA DE REFERENCIA NUMERO DE APTO`
+📩 Una vez realizado el pago, solicitamos enviar el comprobante generado por JELPIT al correo *admonvillasol@gmail.com*, el cual será enviado a su correo electrónico.`
                 )
                 break;
             case '9':
@@ -120,23 +121,29 @@ VILLA SOL ☀️ EN LA CASILLA DE REFERENCIA NUMERO DE APTO`
 Martes a domingo desde las 10:00 hasta las 5:30 PM
 Lunes no se abre
 
-*HORARIO PISCINA 2*
-Martes a domingo desde las 10:00 hasta las 5:30 PM 
+*HORARIOS PISCINA #1*
+*LUNES:* 🚫 Cerrada por mantenimiento, si es festivo se pasa para el día martes.
+*MARTES Y JUEVES:* De 10:00 a.m. a 1:00 p.m. y de 1:30 p.m. a 5:30 p.m.
+*MIÉRCOLES:* 🚫 Cerrada
+*VIERNES:* De 9:00 a.m. a 3:00 p.m.
+*SÁBADO, DOMINGO Y FESTIVOS:* De 9:00 a.m. a 3:30 p.m.
 
-*NOTA:* Los días lunes se realiza el mantenimiento de la piscina, si el lunes es festivo esta limpieza para a realizarse los días martes
-
-*HORARIO PISCINA 1*
-Martes a domingo desde las 9:00 hasta las 3:30 PM 
-
-*NOTA:* Los días lunes se realiza el mantenimiento de la piscina, si el lunes es festivo esta limpieza para a realizarse los días martes
+*HORARIOS PISCINA #2*
+*LUNES Y MIÉRCOLES:* De 10:00 a.m. a 1:00 p.m. y de 1:30 p.m. a 5:30 p.m.
+*MARTES:* 🚫 Cerrada por mantenimiento general, si es festivo se pasa para el día miércoles.
+*JUEVES:* 🚫 Cerrada
+*VIERNES:* De 1:00 p.m. a 7:00 p.m.
+*SÁBADO, DOMINGO Y FESTIVOS:* De 11:30 a.m. a 7:00 p.m.
 
 *HORARIO SALON SOCIAL* 
-Todos los días desde las 8:00 AM hasta las 12:00 AM
+Domingo a jueves: 8:00 AM a 10:30 PM
+Viernes y sábado: 8:00 AM a 12:00 de la medianoche
 
 *SE ENTREGA EN PORTERIA* - No se entrega antes de las 8:00 am
 
 *HORARIO BBQ* 
-Todos los días desde las 8:00 AM hasta las 12:00 AM
+Domingo a jueves: 8:00 AM a 10:30 PM
+Viernes y sábado: 8:00 AM a 12:00 de la medianoche
 
 *SE ENTREGA EN PORTERIA* - No se entrega antes de las 8:00 am
 
@@ -144,25 +151,25 @@ Todos los días desde las 8:00 AM hasta las 12:00 AM
 Todos los días desde las
 9:00 AM A 10:00 PM 
 
-*HORARIO GIMANSIO*
+*HORARIO GIMNASIO*
 Todos los días desde las
 5:00 AM A 10:00 PM – 12:00 A 1:00 SE HACE ASEO`
                 )
                 break;
             case '11':
                 await flowDynamic(`*HORARIO ADMINISTRACIÓN*
-*LUNES, MARTES, MIERCOLES Y VIERNES*
+*LUNES, MARTES, JUEVES Y VIERNES*
 8:00 AM A 1:00 PM 2:00 PM A 5:00 PM
-*JUEVES*
+*MIERCOLES*
 12:00 PM A 8:00 PM 
-*SABADO* (2 al mes presenciales y 2 virtuales)
+*SABADO*
 8:00 AM A 12:00 PM
 
 Para el *registro facial*:
 *LUNES A VIERNES* 
 9:00 AM a 1:00 PM y de 2:00 PM a 4:00 PM
 *SABADO* 
-9:00AM A 11:00AM – cuando se esté presencial.
+9:00AM A 11:00AM
 
 En la oficina de la administración.`
                 )
@@ -180,23 +187,77 @@ En la oficina de la administración.`
                 await flowDynamic(`Correo electrónico: admonvillasol@gmail.com`)
                 break;
             case '16':
-                await flowDynamic(`*RESERVA Y COSTO DEL SALON SOCIAL*
-•	Valor alquiler 100.000 (transferir a cuenta administración) 
-•	Depósito 100.000 (efectivo en administración son reembolsables en caso de no presentar daños)
-•	Tasa de aseo 30.000 (efectivo en administración)
-•	4 mesas pequeñas
-•	2 tablones
-•	39 sillas.
-•	Me indica fecha para revisar disponibilidad
+                await flowDynamic(`☀️ *RESERVA BBQ*
+Para realizar la reserva del BBQ, tenga en cuenta la siguiente información:
 
-*RESERVA Y COSTO DEL BBQ*
-•	Valor alquiler 100.000 (transferir a cuenta administración) 
-•	Depósito 100.000 (efectivo en administración son reembolsables en caso de no presentar daños)
-•	Tasa de aseo 30.000 (efectivo en administración)
-•	1 mesas pequeñas
-•	1 tablones
-•	13 sillas.
-•	Me indica fecha para revisar disponibilidad`
+💰 *VALORES DE LA RESERVA*
+Valor del alquiler: $150.000
+Este valor debe ser transferido a la cuenta de ahorros Davivienda de la copropiedad:
+Davivienda:
+https://web-conjuntos.jelpit.com/pagar-mi-administracion#/?id=6aa45e77ff18e91262979a3e
+REFERENCIA: 3333
+COMPARTIR EL COMPROBANTE ENVIADO POR JELPIT
+
+Depósito: $100.000
+Debe ser entregado en efectivo en la Administración con mínimo 3 días de anticipación al evento.
+El depósito será reembolsable, siempre y cuando no se presenten daños en el BBQ, mobiliario o elementos de la copropiedad.
+
+Tasa de aseo: $30.000
+Debe ser entregada en efectivo en la Administración el día del evento.
+En caso de no cancelar la tasa de aseo, el espacio deberá ser entregado completamente limpio y en orden, a más tardar a las 12:00 de la medianoche del día del evento o, como máximo, a las 7:00 a. m. del día siguiente.
+
+🪑 *DOTACIÓN DISPONIBLE*
+La reserva del BBQ incluye:
+1 mesa pequeña
+1 tablón
+10 sillas
+
+🕐 *HORARIOS DE USO DEL BBQ*
+Domingo a jueves: 8:00 a. m. a 10:30 p. m.
+Viernes y sábado: 8:00 a. m. a 12:00 de la medianoche.
+
+📅 *DISPONIBILIDAD Y CANCELACIÓN*
+Por favor, indíquenos la fecha en la que desea realizar el evento para verificar la disponibilidad del BBQ.
+Una vez realizado el pago, si posteriormente se cancela la reserva, no se realizará devolución del dinero. El valor pagado será trasladado como abono a la administración del apartamento.
+
+*Importante:* La reserva quedará confirmada una vez se verifique la disponibilidad y se cumplan las condiciones de pago establecidas.`
+                )
+                await flowDynamic(`☀️ *RESERVA SALÓN SOCIAL*
+Para realizar la reserva del salón social, tenga en cuenta la siguiente información:
+
+💰 *VALORES DE LA RESERVA*
+Valor del alquiler: $150.000
+Este valor debe ser transferido a la cuenta de ahorros Davivienda de la copropiedad:
+Davivienda:
+https://web-conjuntos.jelpit.com/pagar-mi-administracion#/?id=6aa45e77ff18e91262979a3e
+REFERENCIA PARA EL PAGO: 2222
+COMPARTIR EL COMPROBANTE ENVIADO POR JELPIT
+
+Depósito: $100.000
+Debe ser entregado en efectivo en Portería con mínimo 3 días de anticipación al evento.
+El depósito será reembolsable, siempre y cuando no se presenten daños en el salón, mobiliario o elementos de la copropiedad.
+
+Tasa de aseo: $30.000
+Debe ser entregada en efectivo en la Administración el día del evento.
+En caso de no cancelar la tasa de aseo, el salón deberá ser entregado completamente limpio y en orden, a más tardar a las 12:00 de la medianoche del día del evento o, como máximo, a las 7:00 a. m. del día siguiente.
+
+🕐 *HORARIOS DE USO*
+Domingo a jueves: 8:00 a. m. a 10:30 p. m.
+Viernes y sábado: 8:00 a. m. a 12:00 de la medianoche.
+
+🪑 *ELEMENTOS INCLUIDOS*
+La reserva del salón social incluye:
+4 mesas pequeñas
+2 tablones
+39 sillas
+1 nevera
+1 microondas
+
+📅 *DISPONIBILIDAD Y CANCELACIÓN*
+Por favor, indíquenos la fecha en la que desea realizar el evento para verificar la disponibilidad del salón social.
+Una vez realizado el pago, si posteriormente se cancela la reserva, no se realizará devolución del dinero. El valor pagado será trasladado como abono a la administración del apartamento.
+
+*Importante:* La reserva solo quedará confirmada una vez se verifique la disponibilidad y se cumplan las condiciones de pago establecidas.`
                 )
                 break;
             case '17':
@@ -208,37 +269,35 @@ NOTA: Se considera trasteo, todo movimiento (entrada o salida) de muebles y ense
                 )
                 break;
             case '18':
-                await flowDynamic(`VALIDAR FECHAS DE PUBLICACION CON ADMINISTRACIÓN
-Para el ingreso a la piscina se debe tener los fichos, para adquirirlos debes hacer el pago de ellos, tienen un *valor de 15.000 pesos* que se transfieren a la cuenta de la copropiedad AHORROS BANCOLOMBIA *26863798280* VILLA SOL`
+                await flowDynamic(`Para el ingreso a la piscina se debe tener los fichos, para adquirirlos debes hacer el pago de ellos, tienen un *valor de 15.000 pesos* que se transfieren a la cuenta de la copropiedad.`
                 )
                 break;
             case '19':
-                await flowDynamic(`Para la publicidad se debe hacer un pago de 15.000 pesos transferido a la cuenta de la copropiedad AHORROS BANCOLOMBIA 26863798280, me envías el comprobante y ponemos su publicidad en el TV de anuncios por 15 días.`)
-                break;
-            case '20':
                 await flowDynamic(`Deben enviar un correo a admonvillasol@gmail.com  con la siguiente información para solicitar las evidencias.
 -	Nombre Completo
 -	APARTAMENTO`
                 )
                 break;
-            case '21':
+            case '20':
                 await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento, la situación presentada en la copropiedad y la evidencia de dicho suceso.`)
                 break;
-            case '22':
+            case '21':
                 await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento, la novedad vista por su parte y la evidencia de dicho daño.`)
                 break;
-            case '23':
+            case '22':
                 await flowDynamic(`Alexis Jiménez – Asistente administrativo 3194334464`)
                 break;
-            case '24':
+            case '23':
                 await flowDynamic(`Portería – 3017774625`)
                 break;
-            case '25':
-                await flowDynamic(`Canal de WhatsApp
-https://whatsapp.com/channel/0029VbA7upuA2pL2kWNXvS3V 
-`)
+            case '24':
+                await flowDynamic(`📢 *Canal de WhatsApp Villasol:*
+https://whatsapp.com/channel/0029VbA7upuA2pL2kWNXvS3V
+
+👥 *Comunidad de WhatsApp Villasol:*
+https://chat.whatsapp.com/DsIz5oJoUP9LIPPPjRrFOI`)
                 break;
-            case '26':
+            case '25':
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
                 stop(ctx);
