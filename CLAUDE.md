@@ -24,12 +24,12 @@ No test suite.
 ## Layout
 
 - `app.js`: registers all flows, creates the Meta provider and the bot. New flows must be imported and added to the `flows` array here.
-- `flows/welcome.js`: entry point (`EVENTS.WELCOME`). Asks the user to choose a complex (number or name) and `gotoFlow`s to it. Only lists: Mosaico, Oporto, Altobelo, Roterdam, Lisboa, Nuevo Milenio, Villasol.
-- `flows/<unidad>.js`: one flow per complex (mosaico, oporto, altobelo, roterdam, lisboa, nuevoMilenio, villasol, altea, majagua, oceana, paraiso). Each is a big `switch` over the menu option with hard-coded replies. They are largely copy-pasted from each other with unit-specific content.
+- `flows/welcome.js`: entry point (`EVENTS.WELCOME`). Asks the user to choose a complex (number or name) and `gotoFlow`s to it. Only lists: Mosaico, Oporto, Altobelo, Lisboa, Nuevo Milenio, Villasol.
+- `flows/<unidad>.js`: one flow per complex (mosaico, oporto, altobelo, lisboa, nuevoMilenio, villasol, altea, majagua, oceana, paraiso). Each is a big `switch` over the menu option with hard-coded replies. They are largely copy-pasted from each other with unit-specific content.
 - `flows/restart.js`: shared "¿Necesitas ayuda con algo más?" step after an answer. `8` = back to previous menu, `9` = main menu, `0` = end.
 - `flows/last-flow.js`: per-user (keyed by `ctx.from`) in-memory Map remembering the last unit flow so `8` in restart can return to it.
 - `flows/idle-custom.js`: per-user 10-minute (600000 ms) inactivity timer; on timeout goes to `idleFlow`, which ends the conversation.
-- `flows/amatista.js`: deprecated, commented out in `app.js`.
+- `flows/amatista.js`, `flows/roterdam.js`: deprecated, commented out in `app.js` (Roterdam also in `welcome.js`).
 - `media/`: images sent by the Oceana flow.
 - `TEMPLATE_CHATBOT_UNIDAD.md`: questionnaire given to administrators to collect the content needed to create or update a unit's flow.
 

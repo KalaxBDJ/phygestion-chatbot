@@ -14,13 +14,13 @@ const flowLisboa = require('./flows/lisboa');
 const flowNuevoMilenio = require('./flows/nuevoMilenio');
 const flowOceana = require('./flows/oceana');
 const flowParaiso = require('./flows/paraiso');
-const flowRoterdam = require('./flows/roterdam');
 const flowAltea = require('./flows/altea');
 const flowVillasol = require('./flows/villasol');
 const { idleFlow } = require('./flows/idle-custom');
 
 //Deprecated
 // const flowAmatista = require('./flows/amatista');
+// const flowRoterdam = require('./flows/roterdam');
 
 const {TOKEN, NUMBER_ID, VERIFY_TOKEN } = process.env
 
@@ -34,7 +34,6 @@ const flows = [
     flowNuevoMilenio,
     flowOceana,
     flowParaiso,
-    flowRoterdam,
     flowAltea,
     flowVillasol,
     flowRestartFinish,
