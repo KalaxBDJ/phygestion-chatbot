@@ -16,6 +16,7 @@ const flowOceana = require('./flows/oceana');
 const flowParaiso = require('./flows/paraiso');
 const flowAltea = require('./flows/altea');
 const flowVillasol = require('./flows/villasol');
+const flowLivorno = require('./flows/livorno');
 const { idleFlow } = require('./flows/idle-custom');
 
 //Deprecated
@@ -36,6 +37,7 @@ const flows = [
     flowParaiso,
     flowAltea,
     flowVillasol,
+    flowLivorno,
     flowRestartFinish,
     idleFlow
 ]
