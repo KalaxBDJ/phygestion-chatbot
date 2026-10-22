@@ -126,6 +126,20 @@ The user pushes to Railway themselves. When they say the change is live, offer t
 
 Use the unit name as the manager wrote it, and nothing else from the sheet. Load the Gmail tools with ToolSearch (`+gmail`). If the connector is not authenticated, ask the user to run `/mcp`. If it can only create drafts and not send, create the draft and tell the user to press send. If there is no Gmail tool at all, print the text for the user to send. Never send to any address other than the one in the row.
 
+## Step 7a – Acknowledge the request (optional, when the user asks)
+
+If the change will take a while to go live (a blocked deploy, a pending PR) and the user wants the manager to know the request was received, offer this email. It goes to the same address as Step 7 (column D of that row), and the same rules apply: **never send before the user has seen the final text and said yes**, and never to any other address. Spanish, short:
+
+> Asunto: Recibimos su solicitud para el chatbot de <unidad>
+>
+> Hola, <nombre>:
+>
+> Recibimos su solicitud de configuración del chatbot de <unidad> y ya estamos trabajando en ella. Le escribiremos de nuevo cuando el chatbot tenga los cambios solicitados.
+>
+> Gracias por su paciencia.
+
+Use the unit name as the manager wrote it. `<nombre>` is the first one or two words of column C (title-cased); if column C is empty or unclear, write just "Hola,". Nothing else from the sheet goes in the text. Gmail handling is the same as in Step 7. This does not replace Step 7: the "changes are live" email is still sent after deploy.
+
 ## Git
 
 - Work on a branch, never on `main`. Name it after the unit and date, e.g. `update-villasol-2026-10`. Create it from `main` unless the user says otherwise.
