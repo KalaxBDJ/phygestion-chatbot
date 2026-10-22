@@ -7,6 +7,7 @@ const flowLisboa = require('./lisboa');
 const flowNuevoMilenio = require('./nuevoMilenio');
 // const flowRoterdam = require('./roterdam'); //Deprecated
 const flowVillasol = require('./villasol');
+const flowLivorno = require('./livorno');
 
 const flowWelcome = addKeyword(EVENTS.WELCOME)
     .addAction(async (ctx, { gotoFlow }) => {
@@ -22,6 +23,7 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
         '*4.* LISBOA 🏠',
         '*5.* NUEVO MILENIO 🏠',
         '*6.* VILLASOL 🏠',
+        '*7.* LIVORNO 🏠',
     ], { capture: true }, async (ctx, { gotoFlow, flowDynamic, fallBack }) => {
         const option = ctx.body.trim();
         if (option === '1' || option === 'MOSAICO') {
@@ -36,6 +38,8 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
             return gotoFlow(flowNuevoMilenio);
         } else if (option === '6' || option === 'VILLASOL') {
             return gotoFlow(flowVillasol);
+        } else if (option === '7' || option === 'LIVORNO') {
+            return gotoFlow(flowLivorno);
         } else {
             await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
             return fallBack();
