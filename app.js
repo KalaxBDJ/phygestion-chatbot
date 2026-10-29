@@ -75,6 +75,11 @@ const main = async () => {
     // statuses. Log them so a 200 from the send API that never reaches the phone
     // shows Meta's reason (e.g. 131047, 131026, 131042).
     adapterProvider.metHook.metaServer.use((req, _res, next) => {
+        if (req.method === 'POST') {
+            const change = req.body?.entry?.[0]?.changes?.[0]
+            const kind = change?.value?.statuses ? 'statuses' : change?.value?.messages ? 'messages' : 'other'
+            console.log(`[webhook] POST field=${change?.field} kind=${kind}${kind === 'other' ? ' ' + JSON.stringify(change?.value).slice(0, 500) : ''}`)
+        }
         const statuses = req.body?.entry?.[0]?.changes?.[0]?.value?.statuses
         statuses?.forEach((s) => {
             console.log(`[status] ${s.status} to ${s.recipient_id} id=${s.id}${s.errors ? ' errors=' + JSON.stringify(s.errors) : ''}`)
