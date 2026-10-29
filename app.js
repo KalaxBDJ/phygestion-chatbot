@@ -71,6 +71,17 @@ const main = async () => {
         version: 'v16.0',
     })
 
+    // The provider drops webhook events without `messages`, which includes delivery
+    // statuses. Log them so a 200 from the send API that never reaches the phone
+    // shows Meta's reason (e.g. 131047, 131026, 131042).
+    adapterProvider.metHook.metaServer.use((req, _res, next) => {
+        const statuses = req.body?.entry?.[0]?.changes?.[0]?.value?.statuses
+        statuses?.forEach((s) => {
+            console.log(`[status] ${s.status} to ${s.recipient_id} id=${s.id}${s.errors ? ' errors=' + JSON.stringify(s.errors) : ''}`)
+        })
+        next()
+    })
+
     createBot({
         flow: adapterFlow,
         provider: adapterProvider,
