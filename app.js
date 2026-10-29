@@ -23,7 +23,25 @@ const { idleFlow } = require('./flows/idle-custom');
 // const flowAmatista = require('./flows/amatista');
 // const flowRoterdam = require('./flows/roterdam');
 
+const axios = require('axios')
+
+// The Meta provider swallows send failures and has no request timeout, so a hung
+// call blocks its whole send queue. Log every Graph API call and cap its duration.
+axios.defaults.timeout = 15000
+axios.interceptors.response.use(
+    (res) => {
+        console.log(`[graph] ${res.status} ${res.config.method} ${res.config.url}`)
+        return res
+    },
+    (err) => {
+        console.error(`[graph] FAILED ${err.config?.url}: ${err.code || ''} ${err.response?.status || ''} ${JSON.stringify(err.response?.data || err.message)}`)
+        return Promise.reject(err)
+    }
+)
+
 const {TOKEN, NUMBER_ID, VERIFY_TOKEN } = process.env
+
+console.log(`[env] TOKEN set: ${!!TOKEN} (len ${TOKEN?.length}), NUMBER_ID: ${NUMBER_ID}, VERIFY_TOKEN set: ${!!VERIFY_TOKEN}`)
 
 const flows = [
     flowWelcome,
