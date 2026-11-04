@@ -1,8 +1,6 @@
 require('dotenv').config()
 
-const { createBot, createProvider, createFlow } = require('@bot-whatsapp/bot')
-const MetaProvider = require('@bot-whatsapp/provider/meta')
-const MockAdapter = require('@bot-whatsapp/database/mock')
+const { createBot, createProvider, createFlow, MemoryDB } = require('@builderbot/bot')
 
 const flowWelcome = require('./flows/welcome');
 const flowRestartFinish = require('./flows/restart');
@@ -25,23 +23,10 @@ const { idleFlow } = require('./flows/idle-custom');
 
 const axios = require('axios')
 
-// The Meta provider swallows send failures and has no request timeout, so a hung
-// call blocks its whole send queue. Log every Graph API call and cap its duration.
-axios.defaults.timeout = 15000
-axios.interceptors.response.use(
-    (res) => {
-        console.log(`[graph] ${res.status} ${res.config.method} ${res.config.url}`)
-        return res
-    },
-    (err) => {
-        console.error(`[graph] FAILED ${err.config?.url}: ${err.code || ''} ${err.response?.status || ''} ${JSON.stringify(err.response?.data || err.message)}`)
-        return Promise.reject(err)
-    }
-)
-
-const {TOKEN, NUMBER_ID, VERIFY_TOKEN } = process.env
-
-console.log(`[env] TOKEN set: ${!!TOKEN} (len ${TOKEN?.length}), NUMBER_ID: ${NUMBER_ID}, VERIFY_TOKEN set: ${!!VERIFY_TOKEN}`)
+// PROVIDER=baileys is for local development (QR login with a test phone);
+// production (Railway) leaves it unset and uses the Meta Cloud API.
+const PROVIDER = (process.env.PROVIDER || 'meta').toLowerCase()
+const PORT = +(process.env.PORT || 3000)
 
 const flows = [
     flowWelcome,
@@ -60,21 +45,43 @@ const flows = [
     idleFlow
 ]
 
-const main = async () => {
-    const adapterDB = new MockAdapter()
-    const adapterFlow = createFlow(flows)
+
+// The Meta provider swallows send failures and has no request timeout, so a hung
+// call blocks its whole send queue. Log every Graph API call and cap its duration.
+const setupMeta = () => {
+    axios.defaults.timeout = 15000
+    axios.interceptors.response.use(
+        (res) => {
+            console.log(`[graph] ${res.status} ${res.config.method} ${res.config.url}`)
+            return res
+        },
+        (err) => {
+            console.error(`[graph] FAILED ${err.config?.url}: ${err.code || ''} ${err.response?.status || ''} ${JSON.stringify(err.response?.data || err.message)}`)
+            return Promise.reject(err)
+        }
+    )
+
+    const { MetaProvider } = require('@builderbot/provider-meta')
+    const { TOKEN, NUMBER_ID, VERIFY_TOKEN } = process.env
+
+    console.log(`[env] TOKEN set: ${!!TOKEN} (len ${TOKEN?.length}), NUMBER_ID: ${NUMBER_ID}, VERIFY_TOKEN set: ${!!VERIFY_TOKEN}`)
 
     const adapterProvider = createProvider(MetaProvider, {
         jwtToken: TOKEN,
         numberId: NUMBER_ID,
         verifyToken: VERIFY_TOKEN,
-        version: 'v16.0',
+        version: process.env.META_API_VERSION || 'v22.0',
     })
 
-    // The provider drops webhook events without `messages`, which includes delivery
-    // statuses. Log them so a 200 from the send API that never reaches the phone
-    // shows Meta's reason (e.g. 131047, 131026, 131042).
-    adapterProvider.metHook.metaServer.use((req, _res, next) => {
+    // On startup the provider fetches the number's profile from Graph and emits 'error' if that
+    // fails (bad token, Graph outage, timeout). Without a listener Node crashes the process.
+    adapterProvider.on('error', (err) => {
+        console.error(`[provider] error: ${err?.response?.status || ''} ${err?.message || err}`)
+    })
+
+    // Delivery statuses arrive on the same webhook as messages. Log them so a 200 from
+    // the send API that never reaches the phone shows Meta's reason (e.g. 131047, 131026, 131042).
+    adapterProvider.server.use((req, _res, next) => {
         if (req.method === 'POST') {
             const change = req.body?.entry?.[0]?.changes?.[0]
             const kind = change?.value?.statuses ? 'statuses' : change?.value?.messages ? 'messages' : 'other'
@@ -87,12 +94,28 @@ const main = async () => {
         next()
     })
 
-    createBot({
+    return adapterProvider
+}
+
+const setupBaileys = () => {
+    const { BaileysProvider } = require('@builderbot/provider-baileys')
+    return createProvider(BaileysProvider)
+}
+
+const main = async () => {
+    const adapterDB = new MemoryDB()
+    const adapterFlow = createFlow(flows)
+    const adapterProvider = PROVIDER === 'baileys' ? setupBaileys() : setupMeta()
+
+    console.log(`[provider] ${PROVIDER} on port ${PORT}`)
+
+    const { httpServer } = await createBot({
         flow: adapterFlow,
         provider: adapterProvider,
         database: adapterDB,
     })
 
+    httpServer(PORT)
 }
 
 main()

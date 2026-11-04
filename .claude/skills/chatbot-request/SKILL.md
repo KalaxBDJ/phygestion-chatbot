@@ -72,7 +72,7 @@ Organise the menu in themed sections with an emoji heading, the way `flows/majag
 
 Use only the sections the unit needs, rename them to fit, and number options consecutively across sections. Do not invent options. Tell the user how you grouped them so they can ask for changes.
 
-**Long menus.** A WhatsApp text message holds at most 4096 characters, and units can have 30+ options. If the menu text is over about 3500 characters, split it: put the first sections in plain `.addAnswer([...])` messages and the rest, ending with the navigation options, in the `{ capture: true }` one. Only the last answer can capture.
+**Long menus.** A WhatsApp text message holds at most 4096 characters, and units can have 30+ options. Every message sent is billed by Meta, so keep the menu (greeting lines included) in one `{ capture: true }` message. Only if it is over about 3500 characters, split it: put the first sections in plain `.addAnswer([...])` messages and the rest, ending with the navigation options, in the `{ capture: true }` one, and tell the user that this costs one more message per visit. Only the last answer can capture.
 
 ## Step 3 – Implement
 
@@ -81,17 +81,18 @@ Follow the flow conventions in `CLAUDE.md`:
 - `addKeyword(['UNIDAD'], { sensitive: true })`, keyword in capitals, no spaces (e.g. `NUEVOMILENIO`). Keywords must be unique across flows.
 - `reset(ctx, gotoFlow, 600000)` in the first action and in the capture handler.
 - Normal answer ends with `setLastFlow(ctx, flowX); return gotoFlow(flowRestartFinish);`.
-- Menu "volver al menú principal" does `gotoFlow(require('./welcome'))`; option `0` calls `stop(ctx)` and `endFlow()`; invalid input does `flowDynamic('❌ Opción no válida...')` and `fallBack()`.
+- Menu "volver al menú principal" does `gotoFlow(require('./welcome'))`; option `0` calls `stop(ctx)` and `return endFlow('goodbye text')`; invalid input does `return fallBack('❌ Opción no válida...')`.
+- Every answer is one message: `await reply(...)`, where `reply` is the helper defined at the top of the capture handler (it appends `RESTART_FOOTER` from `flows/footer.js`). Never send an answer and the "¿algo más?" prompt as separate messages.
 - Menu labels and `case` numbers must match one to one.
 - New flow: add the require and the array entry in `app.js`. Add it to `flows/welcome.js` (menu line, `if` branch, and renumber) only if the user wants it selectable. If the welcome menu changes, tell the user that the unit numbers shift.
 
 Content rules:
 
 - Use the manager's wording as written. Do not rewrite, translate or "improve" it. Fixing a clear typo or an unbalanced WhatsApp `*` is fine, and mention it in the report.
-- Greeting (E) and extra welcome (F): apply to the unit's `addAnswer` welcome lines. Ignore "N/A" or empty values.
+- Greeting (E) and extra welcome (F): apply to the first lines of the unit's menu array (the title and question lines). Ignore "N/A" or empty values.
 - Link column: put the URL in the reply. Email column: put the address in the reply. If the full response (column 2) already contains them, do not duplicate.
 - Notes column: these are instructions to you from the manager about that option; apply them if they are about the content, and flag anything that is not.
-- Escape backticks and `${` inside template literals. Keep each message under about 3500 characters; split long ones into several `flowDynamic` calls.
+- Escape backticks and `${` inside template literals. Keep each answer under about 3500 characters (the footer adds about 90). Only if it is longer, split it into several `flowDynamic` calls and send the last part with `reply`; tell the user it costs an extra message.
 - WhatsApp formatting: `*bold*`, `_italic_`. Keep markers balanced.
 - Do not touch other units' flows or unrelated code.
 

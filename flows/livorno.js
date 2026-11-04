@@ -1,6 +1,7 @@
-const { addKeyword } = require('@bot-whatsapp/bot');
+const { addKeyword } = require('@builderbot/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { RESTART_FOOTER } = require('./footer');
 const { setLastFlow } = require('./last-flow');
 
 
@@ -8,9 +9,9 @@ const flowLivorno = addKeyword(['LIVORNO'], { sensitive: true })
     .addAction(async (ctx, { gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
     })
-    .addAnswer('¡Hola! Soy Livornito, el asistente virtual de Livorno de la Toscana. ¿En qué puedo ayudarle?')
-    .addAnswer('Aquí encontrará información general de la copropiedad. Escriba el número de la opción que desea consultar:')
     .addAnswer([
+        '¡Hola! Soy Livornito, el asistente virtual de Livorno de la Toscana. ¿En qué puedo ayudarle?',
+        'Aquí encontrará información general de la copropiedad. Escriba el número de la opción que desea consultar:\n',
         '*Facturación y Pagos:* 💳',
         '*1.* Pago de administración',
         '*2.* Factura de administración',
@@ -26,10 +27,11 @@ const flowLivorno = addKeyword(['LIVORNO'], { sensitive: true })
         '*0.* Terminar la conversación.'
     ], { capture: true }, async (ctx, { flowDynamic, fallBack, endFlow, gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
+        const reply = async (text) => await flowDynamic(text + RESTART_FOOTER);
         const option = ctx.body.trim();
         switch (option) {
             case '1':
-                await flowDynamic(
+                await reply(
                     `Recuerde cancelar su administración máximo hasta el día 28 de cada mes, los bancos realizan cortes y si paga después de esta fecha, su valor puede verse reflejado como si hubiese cancelado al mes siguiente.
 
 Puede pagar su administración al número de cuenta Bancolombia Livorno Ahorros 37900006672 (recuerde poner el número de su apartamento)
@@ -43,13 +45,13 @@ Nuevo Link:
 https://tu360.bancolombia.com/inmobiliario/pagos-en-linea/pagaradministracion`);
                 break;
             case '2':
-                await flowDynamic(
+                await reply(
                     `Para visualizar su factura por favor ingrese a https://phenlinea.info/
 Ingrese su usuario el cual es la palabra LIVORNO seguido del número de su apartamento.
 La contraseña es la primera letra en mayúscula del nombre del propietario, seguido del número del apartamento`);
                 break;
             case '3':
-                await flowDynamic(
+                await reply(
                     `La administración no cuenta con oficina en la copropiedad, sin embargo hace presencia los días:
 Lunes en la mañana
 Jueves todo el día
@@ -58,13 +60,13 @@ Viernes en la tarde
 Si desea agendar una cita con la administración, por favor escribir al Whatsapp 3053933472`);
                 break;
             case '4':
-                await flowDynamic(
+                await reply(
                     `26-10-2026
 13-11-2026
 11-12-2026`);
                 break;
             case '5':
-                await flowDynamic(
+                await reply(
                     `La copropiedad cuenta con 3 horarios de agendamientos para mudanzas, salida y/o ingreso de enseres, los cuales son:
 De 8:00 am a 11:00am
 De 11:00am a 1:00pm
@@ -85,7 +87,7 @@ Si es inquilino por favor agendar su espacio con la carta de autorización de in
 Recuerde ser muy puntual con su horario elegido de mudanza.`);
                 break;
             case '6':
-                await flowDynamic(
+                await reply(
                     `Este es el Manual de convivencia de Livorno de la Toscana Ph:
 
 https://drive.google.com/file/d/1DHeDna2wA267R1COA_udFV6KtjYQRoPG/view?usp=sharing`);
@@ -94,11 +96,9 @@ https://drive.google.com/file/d/1DHeDna2wA267R1COA_udFV6KtjYQRoPG/view?usp=shari
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
                 stop(ctx);
-                await flowDynamic('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋');
-                return endFlow(); //Termina la conversación
+                return endFlow('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋'); //Termina la conversación
             default:
-                await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
-                return fallBack(); //Vuelve a presentar las opciones
+                return fallBack('❌ Opción no válida. Responde con el número de una opción del menú.');
         }
         setLastFlow(ctx, flowLivorno);
         return gotoFlow(flowRestartFinish);

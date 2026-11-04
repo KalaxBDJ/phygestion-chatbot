@@ -1,4 +1,4 @@
-const { addKeyword, EVENTS } = require('@bot-whatsapp/bot');
+const { addKeyword, EVENTS } = require('@builderbot/bot');
 const { start } = require('./idle-custom');
 const flowMosaico = require('./mosaico');
 const flowOporto = require('./oporto');
@@ -14,8 +14,8 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
         start(ctx, gotoFlow, 600000); //Inicia el temporizador al entrar en el flujo
         console.log(`Chatbot iniciado por usuario: ${ctx.from}`)
     })
-    .addAnswer('¡Hola! 👋 Bienvenido a este *Chatbot*. ¡Espero que estés teniendo un gran día! 😊')
     .addAnswer([
+        '¡Hola! 👋 Bienvenido a este *Chatbot*. ¡Espero que estés teniendo un gran día! 😊\n',
         'Para empezar, por favor elige la unidad a la que perteneces:',
         '*1.* MOSAICO 🏠',
         '*2.* OPORTO 🏠',
@@ -24,7 +24,7 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
         '*5.* NUEVO MILENIO 🏠',
         '*6.* VILLASOL 🏠',
         '*7.* LIVORNO 🏠',
-    ], { capture: true }, async (ctx, { gotoFlow, flowDynamic, fallBack }) => {
+    ], { capture: true }, async (ctx, { gotoFlow, fallBack }) => {
         const option = ctx.body.trim();
         if (option === '1' || option === 'MOSAICO') {
             return gotoFlow(flowMosaico);
@@ -41,8 +41,7 @@ const flowWelcome = addKeyword(EVENTS.WELCOME)
         } else if (option === '7' || option === 'LIVORNO') {
             return gotoFlow(flowLivorno);
         } else {
-            await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
-            return fallBack();
+            return fallBack('❌ Opción no válida. Responde con un número del 1 al 7.');
         }
 });
 

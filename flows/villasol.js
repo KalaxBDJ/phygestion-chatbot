@@ -1,6 +1,7 @@
-const { addKeyword } = require('@bot-whatsapp/bot');
+const { addKeyword } = require('@builderbot/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { RESTART_FOOTER } = require('./footer');
 const { setLastFlow } = require('./last-flow');
 
 
@@ -8,9 +9,9 @@ const flowVillasol = addKeyword(['VILLASOL'], { sensitive: true })
     .addAction(async (ctx, { gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
     })
-    .addAnswer('¡Bienvenido a la sección de Villasol! 🏡')
-    .addAnswer('¿Qué te gustaría hacer hoy? 🤔')
     .addAnswer([
+        '¡Bienvenido a la sección de Villasol! 🏡',
+        '¿Qué te gustaría hacer hoy? 🤔\n',
         '🏡 *Opciones de Villasol:*',
 
         '\n📑 *Estados de Cuenta y Facturación:*',
@@ -52,32 +53,33 @@ const flowVillasol = addKeyword(['VILLASOL'], { sensitive: true })
         '*0.* Terminar la conversación.'
     ], { capture: true }, async (ctx, { flowDynamic, fallBack, endFlow, gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
+        const reply = async (text) => await flowDynamic(text + RESTART_FOOTER);
         const option = ctx.body.trim();
         switch (option) {
             case '1':
-                await flowDynamic(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
+                await reply(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtjToG-BGmGgxJq8A?e=1KjneI `);
                 break;
             case '2':
-                await flowDynamic(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
+                await reply(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`)
                 break;
             case '3':
-                await flowDynamic(`Si paga después de la fecha de vencimiento de la factura el pago se verá reflejado al siguiente mes.`)
+                await reply(`Si paga después de la fecha de vencimiento de la factura el pago se verá reflejado al siguiente mes.`)
                 break;
             case '4':
-                await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com , con el número de apartamento y el mes de pago que se efectuó.`)
+                await reply(`Por favor enviar un correo a admonvillasol@gmail.com , con el número de apartamento y el mes de pago que se efectuó.`)
                 break;
             case '5':
-                await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento. Especificar la novedad de facturación para la debida corrección si es el caso.`)
+                await reply(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento. Especificar la novedad de facturación para la debida corrección si es el caso.`)
                 break;
             case '6':
-                await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento y el día de pago que se efectuó.`)
+                await reply(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento y el día de pago que se efectuó.`)
                 break;
             case '7':
-                await flowDynamic(`*MEDIOS DE PAGO ADMINISTRACIÓN*
+                await reply(`*MEDIOS DE PAGO ADMINISTRACIÓN*
 
 💻 *OPCIÓN 1 – PAGO EN LÍNEA POR JELPIT*
 🔗 PAGO ADMINISTRACIÓN O ZONAS COMUNES:
@@ -92,7 +94,7 @@ Por favor, al momento de realizar el pago, verifique que la referencia correspon
                 )
                 break;
             case '8':
-                await flowDynamic(`🔗 *PAGO ADMINISTRACIÓN O ZONAS COMUNES:*
+                await reply(`🔗 *PAGO ADMINISTRACIÓN O ZONAS COMUNES:*
 https://web-conjuntos.jelpit.com/pagar-mi-administracion#/?id=6aa45e77ff18e91262979a3e
 
 📌 *REFERENCIAS DE PAGO:*
@@ -109,7 +111,7 @@ https://web-conjuntos.jelpit.com/pagar-mi-administracion#/?id=6aa45e77ff18e91262
                 )
                 break;
             case '9':
-                await flowDynamic(`Deben enviar un correo a admonvillasol@gmail.com con la siguiente información para solicitar el PAZ Y SALVO. Deberá tener en cuenta que el PAZ Y SALVO después de solicitarlo se le remitirá cuando hayan cumplido 3 días hábiles.
+                await reply(`Deben enviar un correo a admonvillasol@gmail.com con la siguiente información para solicitar el PAZ Y SALVO. Deberá tener en cuenta que el PAZ Y SALVO después de solicitarlo se le remitirá cuando hayan cumplido 3 días hábiles.
 -	Nombre Completo
 -	Número de Celda de Parqueadero (si se tiene)
 -	Cédula
@@ -117,7 +119,7 @@ https://web-conjuntos.jelpit.com/pagar-mi-administracion#/?id=6aa45e77ff18e91262
                 )
                 break;
             case '10':
-                await flowDynamic(`*HORARIO TURCO*
+                await reply(`*HORARIO TURCO*
 Martes a domingo desde las 10:00 hasta las 5:30 PM
 Lunes no se abre
 
@@ -157,7 +159,7 @@ Todos los días desde las
                 )
                 break;
             case '11':
-                await flowDynamic(`*HORARIO ADMINISTRACIÓN*
+                await reply(`*HORARIO ADMINISTRACIÓN*
 *LUNES, MARTES, JUEVES Y VIERNES*
 8:00 AM A 1:00 PM 2:00 PM A 5:00 PM
 *MIERCOLES*
@@ -175,19 +177,19 @@ En la oficina de la administración.`
                 )
                 break;
             case '12':
-                await flowDynamic(`Puede ver el Reglamento de Propiedad Horizontal en el siguiente enlace => https://drive.google.com/file/d/1TRAt8Dww2CkXko8dzwNa6aQNNrqrogOW/view?usp=sharing `)
+                await reply(`Puede ver el Reglamento de Propiedad Horizontal en el siguiente enlace => https://drive.google.com/file/d/1TRAt8Dww2CkXko8dzwNa6aQNNrqrogOW/view?usp=sharing `)
                 break;
             case '13':
-                await flowDynamic(`Puede ver el Manual de Convivencia en el siguiente enlace => https://drive.google.com/file/d/1iDfszHqtJszPOG0PP2DYW2uHPt_qB8Wf/view?usp=sharing`)
+                await reply(`Puede ver el Manual de Convivencia en el siguiente enlace => https://drive.google.com/file/d/1iDfszHqtJszPOG0PP2DYW2uHPt_qB8Wf/view?usp=sharing`)
                 break;
             case '14':
-                await flowDynamic(`Puedes diligenciar el censo poblacional en el siguiente enlace => https://docs.google.com/forms/d/e/1FAIpQLSdplg4nN_zXnt4hyhQIKdHMzOiRn6BLDA5vmvYTMRKIAlxZQA/viewform?usp=sf_link `)
+                await reply(`Puedes diligenciar el censo poblacional en el siguiente enlace => https://docs.google.com/forms/d/e/1FAIpQLSdplg4nN_zXnt4hyhQIKdHMzOiRn6BLDA5vmvYTMRKIAlxZQA/viewform?usp=sf_link `)
                 break;
             case '15':
-                await flowDynamic(`Correo electrónico: admonvillasol@gmail.com`)
+                await reply(`Correo electrónico: admonvillasol@gmail.com`)
                 break;
             case '16':
-                await flowDynamic(`☀️ *RESERVA BBQ*
+                await reply(`☀️ *RESERVA BBQ*
 Para realizar la reserva del BBQ, tenga en cuenta la siguiente información:
 
 💰 *VALORES DE LA RESERVA*
@@ -220,9 +222,7 @@ Viernes y sábado: 8:00 a. m. a 12:00 de la medianoche.
 Por favor, indíquenos la fecha en la que desea realizar el evento para verificar la disponibilidad del BBQ.
 Una vez realizado el pago, si posteriormente se cancela la reserva, no se realizará devolución del dinero. El valor pagado será trasladado como abono a la administración del apartamento.
 
-*Importante:* La reserva quedará confirmada una vez se verifique la disponibilidad y se cumplan las condiciones de pago establecidas.`
-                )
-                await flowDynamic(`☀️ *RESERVA SALÓN SOCIAL*
+*Importante:* La reserva quedará confirmada una vez se verifique la disponibilidad y se cumplan las condiciones de pago establecidas.` + '\n\n' + `☀️ *RESERVA SALÓN SOCIAL*
 Para realizar la reserva del salón social, tenga en cuenta la siguiente información:
 
 💰 *VALORES DE LA RESERVA*
@@ -261,7 +261,7 @@ Una vez realizado el pago, si posteriormente se cancela la reserva, no se realiz
                 )
                 break;
             case '17':
-                await flowDynamic(`*TRASTEOS Y REFORMAS DE APARTAMENTOS:*
+                await reply(`*TRASTEOS Y REFORMAS DE APARTAMENTOS:*
 NOTA: Se considera trasteo, todo movimiento (entrada o salida) de muebles y enseres, cualquiera que sea su tamaño.
 *1.* El horario para trasteos, reformas y adecuaciones donde se utilicen herramientas como taladros, martillos, etc. los cuales perturben la tranquilidad de los residentes, serán permitidos *solo de lunes a viernes de 9:00 a.m. A 4:00 p.m. Los sábados de 9:00 a.m. a 1:00 p.m.* Los domingos y días festivos *NO* están permitidos ningún tipo de estos trabajos y actividades.
 *2.* Se debe informar a arrendatarios o compradores del inmueble el horario para la realización de trasteos y cuando se vaya a hacer un trasteo debe informarse por escrito a la administración y con 24 horas de anticipación, para la respectiva verificación.
@@ -269,29 +269,29 @@ NOTA: Se considera trasteo, todo movimiento (entrada o salida) de muebles y ense
                 )
                 break;
             case '18':
-                await flowDynamic(`Para el ingreso a la piscina se debe tener los fichos, para adquirirlos debes hacer el pago de ellos, tienen un *valor de 15.000 pesos* que se transfieren a la cuenta de la copropiedad.`
+                await reply(`Para el ingreso a la piscina se debe tener los fichos, para adquirirlos debes hacer el pago de ellos, tienen un *valor de 15.000 pesos* que se transfieren a la cuenta de la copropiedad.`
                 )
                 break;
             case '19':
-                await flowDynamic(`Deben enviar un correo a admonvillasol@gmail.com  con la siguiente información para solicitar las evidencias.
+                await reply(`Deben enviar un correo a admonvillasol@gmail.com  con la siguiente información para solicitar las evidencias.
 -	Nombre Completo
 -	APARTAMENTO`
                 )
                 break;
             case '20':
-                await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento, la situación presentada en la copropiedad y la evidencia de dicho suceso.`)
+                await reply(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento, la situación presentada en la copropiedad y la evidencia de dicho suceso.`)
                 break;
             case '21':
-                await flowDynamic(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento, la novedad vista por su parte y la evidencia de dicho daño.`)
+                await reply(`Por favor enviar un correo a admonvillasol@gmail.com, con el número de apartamento, la novedad vista por su parte y la evidencia de dicho daño.`)
                 break;
             case '22':
-                await flowDynamic(`Alexis Jiménez – Asistente administrativo 3194334464`)
+                await reply(`Alexis Jiménez – Asistente administrativo 3194334464`)
                 break;
             case '23':
-                await flowDynamic(`Portería – 3017774625`)
+                await reply(`Portería – 3017774625`)
                 break;
             case '24':
-                await flowDynamic(`📢 *Canal de WhatsApp Villasol:*
+                await reply(`📢 *Canal de WhatsApp Villasol:*
 https://whatsapp.com/channel/0029VbA7upuA2pL2kWNXvS3V
 
 👥 *Comunidad de WhatsApp Villasol:*
@@ -301,11 +301,9 @@ https://chat.whatsapp.com/DsIz5oJoUP9LIPPPjRrFOI`)
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
                 stop(ctx);
-                await flowDynamic('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋');
-                return endFlow(); //Termina la conversación
+                return endFlow('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋'); //Termina la conversación
             default:
-                await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
-                return fallBack();
+                return fallBack('❌ Opción no válida. Responde con el número de una opción del menú.');
         }
         setLastFlow(ctx, flowVillasol);
         return gotoFlow(flowRestartFinish);
