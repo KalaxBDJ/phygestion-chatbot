@@ -1,6 +1,7 @@
-const { addKeyword } = require('@bot-whatsapp/bot');
+const { addKeyword } = require('@builderbot/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { RESTART_FOOTER } = require('./footer');
 const { setLastFlow } = require('./last-flow');
 
 
@@ -8,9 +9,9 @@ const flowMajagua = addKeyword(['MAJAGUA'], { sensitive: true })
     .addAction(async (ctx, { gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
     })
-    .addAnswer('¡Bienvenido a la sección de MAJAGUA! 🏡')
-    .addAnswer('¿Qué te gustaría hacer hoy? 🤔')
     .addAnswer([
+        '¡Bienvenido a la sección de MAJAGUA! 🏡',
+        '¿Qué te gustaría hacer hoy? 🤔\n',
         '*Estados de Cuenta:* 📑',
         '*1.* Consulta de estados de cuenta.',
         '*2.* Reclamación de estados de cuenta.',
@@ -41,27 +42,28 @@ const flowMajagua = addKeyword(['MAJAGUA'], { sensitive: true })
         '*0.* Terminar la conversación.'
     ], { capture: true }, async (ctx, { flowDynamic, fallBack, endFlow, gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
+        const reply = async (text) => await flowDynamic(text + RESTART_FOOTER);
         const option = ctx.body.trim();
         switch (option) {
             case '1':
-                await flowDynamic(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
+                await reply(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtjToG-BGmGgxJq8A?e=1KjneI `);
                 break;
             case '2':
-                await flowDynamic('Realiza la reclamación de tus estados de cuenta aquí: https://forms.gle/bp4y3q85n54aWMu4A 🕵️‍♂️');
+                await reply('Realiza la reclamación de tus estados de cuenta aquí: https://forms.gle/bp4y3q85n54aWMu4A 🕵️‍♂️');
                 break;
             case '3':
-                await flowDynamic(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
+                await reply(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`);
                 break;
             case '4':
-                await flowDynamic(
+                await reply(
                     `Envía tu soporte de pago aquí: https://forms.gle/VfjMwbUJBC9FZdob8 💸`);
                 break;
             case '5':
-                await flowDynamic(
+                await reply(
                     `*MEDIOS DE PAGO CUOTAS DE ADMINISTRACIÓN* 💰
 
 1. Link para realizar pago por PSE, recuerda que al ingresar en el buscador debes poner *“Unidad Residencial Majagua”*: https://www.avalpaycenter.com/wps/portal/portal-de-pagos
@@ -71,7 +73,7 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
 3. Convenio Efecty *10691*, referencia número del apartamento`);
                 break;
             case '6':
-                await flowDynamic(
+                await reply(
                     `*MEDIOS DE PAGO OTROS SERVICIOS* 💳
 
 *MEDIOS DE PAGO PARA CHIP VEHICULAR* 🚗
@@ -86,19 +88,19 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
                 );
                 break;
             case '7':
-                await flowDynamic(
+                await reply(
                     `El plazo máximo para pagar es el *último día hábil del mes*. 
                     
 Se recomienda realizar el pago antes de las 4:00 p.m. para asegurar que se registre correctamente en el banco. 📅`);
                 break;
             case '8':
-                await flowDynamic(
+                await reply(
                     `Para obtener el paz y salvo, envía los soportes de pago de los últimos 2 meses al correo: majaguaph@gmail.com 📧
 
 *❗NOTA:* La entrega de los paz y salvo se realizará en un plazo de 3 días hábiles.`);
                 break;
             case '9':
-                await flowDynamic(
+                await reply(
                     `🚛 *INFORMACIÓN DE MUDANZAS*
 
 *Horarios:*
@@ -107,7 +109,7 @@ Se recomienda realizar el pago antes de las 4:00 p.m. para asegurar que se regis
 *Sábados:* ⏰ 8:00 a.m. a 12:00 p.m.`);
                 break;
             case '10':
-                await flowDynamic(
+                await reply(
                     `*HORARIOS DEL GIMNASIO* 🏋️
 Lunes, miércoles, viernes y domingo: 5:00am a 10:00pm
 Martes, jueves y sábado: 5:00am a 9:40am y 10:40am a 10:00pm
@@ -120,7 +122,7 @@ Miércoles y viernes: 1:00pm a 8:00pm
 *💡RECUERDA:* Para hacer uso de las zonas comunes, es necesario estar a paz y salvo conel pago de la administración.`);
                 break;
             case '11':
-                await flowDynamic(
+                await reply(
                     `*HORARIOS DE ATENCIÓN ADMINISTRATIVA* 🕒
 
 *Lunes Y Miércoles*: 8:00 a.m. a 1:00 p.m., 2:00 p.m. a 3:00 p.m.
@@ -134,19 +136,19 @@ Miércoles y viernes: 1:00pm a 8:00pm
 *Sábados:* ⏰ 8:00 a.m. a 12:00 p.m.`);
                 break;
             case '12':
-                await flowDynamic('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/drive/folders/1iYL53hKtOnrkCC5eRiRxgW2UMfkGdUUE 📘');
+                await reply('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/drive/folders/1iYL53hKtOnrkCC5eRiRxgW2UMfkGdUUE 📘');
                 break;
             case '13':
-                await flowDynamic('Consulta el Manual de Convivencia aquí: https://drive.google.com/file/d/1K1X70HTgeKr14ab4HctBuBKnLfCaddhq/view?usp=sharing 📘')
+                await reply('Consulta el Manual de Convivencia aquí: https://drive.google.com/file/d/1K1X70HTgeKr14ab4HctBuBKnLfCaddhq/view?usp=sharing 📘')
                 break;
             case '14':
-                await flowDynamic('Diligencia el censo poblacional aquí: https://docs.google.com/document/d/17Mnrc8bSW7Z8s2t12nv7ypajcBioabzn/edit 📝');
+                await reply('Diligencia el censo poblacional aquí: https://docs.google.com/document/d/17Mnrc8bSW7Z8s2t12nv7ypajcBioabzn/edit 📝');
                 break;
             case '15':
-                await flowDynamic('Radica tu derecho de petición aquí: https://docs.google.com/forms/d/e/1FAIpQLScTluPMs-yhv5HRfWmCOzm2qVC7PTqRmw2mupFEuDxZkPBjDw/viewform 📄');
+                await reply('Radica tu derecho de petición aquí: https://docs.google.com/forms/d/e/1FAIpQLScTluPMs-yhv5HRfWmCOzm2qVC7PTqRmw2mupFEuDxZkPBjDw/viewform 📄');
                 break;
             case '16':
-                await flowDynamic(
+                await reply(
                     `*RESERVA Y COSTO DEL SALÓN SOCIAL* 🎉
 
 * Según la disponibilidad en la fecha que se requiera, se debe pagar el valor de $30.000, según la información de pago.
@@ -161,23 +163,21 @@ Miércoles y viernes: 1:00pm a 8:00pm
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMth3cUGLFtCICnPTQ?e=9Inleu`);
                 break;
             case '17':
-                await flowDynamic('PQRS: https://docs.google.com/forms/d/e/1FAIpQLScOKQidh8PqPccCaJRmWywQjhuEkDGuN8jpl1v2gteFIoJrGA/viewform 📝');
+                await reply('PQRS: https://docs.google.com/forms/d/e/1FAIpQLScOKQidh8PqPccCaJRmWywQjhuEkDGuN8jpl1v2gteFIoJrGA/viewform 📝');
                 break;
             case '18':
-                await flowDynamic('Reporte de novedades locativas: https://docs.google.com/forms/d/e/1FAIpQLSdbJOKik7IISldFaOjUfWFHWRkI8-VtZOh5oFSHvo1iWKVuFQ/viewform 🛠️');
+                await reply('Reporte de novedades locativas: https://docs.google.com/forms/d/e/1FAIpQLSdbJOKik7IISldFaOjUfWFHWRkI8-VtZOh5oFSHvo1iWKVuFQ/viewform 🛠️');
                 break;
             case '19':
-                await flowDynamic('Te puedes contactar al número: 302 395 4343 📞');
+                await reply('Te puedes contactar al número: 302 395 4343 📞');
                 break;
             case '20':
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
                 stop(ctx);
-                await flowDynamic('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋');
-                return endFlow(); //Termina la conversación
+                return endFlow('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋'); //Termina la conversación
             default:
-                await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
-                return fallBack(); //Vuelve a presentar las opciones
+                return fallBack('❌ Opción no válida. Responde con el número de una opción del menú.');
         }
         setLastFlow(ctx, flowMajagua);
         return gotoFlow(flowRestartFinish);

@@ -1,6 +1,7 @@
-const { addKeyword } = require('@bot-whatsapp/bot');
+const { addKeyword } = require('@builderbot/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { RESTART_FOOTER } = require('./footer');
 const { setLastFlow } = require('./last-flow');
 const fs = require('fs');
 
@@ -8,9 +9,9 @@ const flowOceana = addKeyword(['NUEVOMILENIO'], { sensitive: true })
     .addAction(async (ctx, { gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
     })
-    .addAnswer('¡Bienvenido a la sección de Oceana! 🏡')
-    .addAnswer('¿Qué te gustaría hacer hoy? 🤔')
     .addAnswer([
+        '¡Bienvenido a la sección de Oceana! 🏡',
+        '¿Qué te gustaría hacer hoy? 🤔\n',
         '*Estados de Cuenta:* 📑',
         '*1.* Consulta factura y estados de cuenta.',
 
@@ -49,14 +50,15 @@ const flowOceana = addKeyword(['NUEVOMILENIO'], { sensitive: true })
         '*0.* Terminar la conversación.'
     ], { capture: true }, async (ctx, { flowDynamic, fallBack, endFlow, gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
+        const reply = async (text) => await flowDynamic(text + RESTART_FOOTER);
         const option = ctx.body.trim();
         switch (option) {
             case '1':
-                await flowDynamic(`Solicita tu factura y estado de cuenta aquí: https://www.phenlinea.info/ 🧾
+                await reply(`Solicita tu factura y estado de cuenta aquí: https://www.phenlinea.info/ 🧾
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`);
                 break;
             case '2':
-                await flowDynamic(`💸 *NOVEDAD de Facturación* 💸
+                await reply(`💸 *NOVEDAD de Facturación* 💸
 
 Por favor, envía tu solicitud a través del aplicativo “PROPIEDATA” 📲. Se te dará solución a la brevedad posible ⏳. Especifica la novedad de facturación para la corrección, si corresponde ✅.
 
@@ -68,22 +70,20 @@ Si su pago se encuentra por fuera de la fecha límite, deberá restar el valor p
 `);
                 break;
             case '3':
+                // One image message: the answer goes in the caption instead of a second text message.
                 await flowDynamic([
                     {
-                        body: "fecha_pago-oceana.png",
+                        body: "Los pagos que se realicen después de la fecha de vencimiento, generan  facturas dobles e intereses y el pago se ve reflejado al mes siguiente." + RESTART_FOOTER,
                         media: 'https://raw.githubusercontent.com/KalaxBDJ/phygestion-chatbot/refs/heads/main/media/fecha_pago-oceana.png'
-                    },
-                    {
-                        body: "Los pagos que se realicen después de la fecha de vencimiento, generan  facturas dobles e intereses y el pago se ve reflejado al mes siguiente."
                     }
                 ]);
                 break;
             case '4':
-                await flowDynamic(
+                await reply(
                     `📧 Por favor, envía un correo a *conjuntooceana@gmail.com* adjuntando el soporte de pago, indicando el número de tu apartamento 🏢`);
                 break;
             case '5':
-                await flowDynamic(`💳 *MEDIOS DE PAGO CUOTAS DE ADMINISTRACIÓN* 💳
+                await reply(`💳 *MEDIOS DE PAGO CUOTAS DE ADMINISTRACIÓN* 💳
 
 1️⃣ *Pago por PSE*: Usa el siguiente enlace para realizar el pago 👉 https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/pagos-aval/resultado-busqueda/realizar-pago?idConv=00017824&origen=buscar
 Al ingresar en el buscador, escribe *"conj inmobiliario oceana et 1 t 1 y 2 cl 39 52 95"*. En la casilla de referencia, coloca el *número de tu apartamento* 🏢.
@@ -93,7 +93,7 @@ Al ingresar en el buscador, escribe *"conj inmobiliario oceana et 1 t 1 y 2 cl 3
 3️⃣ *Pago con Datáfono*: Puedes pagar con datáfono directamente en la oficina de administración 💳.`);
                 break;
             case '6':
-                await flowDynamic(
+                await reply(
                     `💼 *MEDIOS DE PAGO ZONAS COMUNES* 💼
 
 🏛️ *SALÓN SOCIAL*
@@ -115,7 +115,7 @@ En el buscador, ingresa *"conj inmobiliario oceana et 1 t 1 y 2 cl 39 52 95"* y 
 3️⃣ *Pago con Datáfono*: Puedes pagar con datáfono directamente en la oficina de administración 💳.`);
                 break;
             case '7':
-                await flowDynamic(
+                await reply(
                     `📄 *Circular Informativa para Solicitar el Endoso del Seguro para Crédito Hipotecario* 📄
 
 Por favor, revisa la circular informativa en el siguiente enlace:
@@ -124,7 +124,7 @@ https://drive.google.com/file/d/1pQP7ArafxQOmJk-3jd452yRzpPHSSOSX/view?usp=shari
 Para cualquier consulta, puedes comunicarte al correo *consultorvivaseguros@gmail.com* 📧.`);
                 break;
             case '8':
-                await flowDynamic(
+                await reply(
                     `📧 *Solicitud de PAZ Y SALVO*
 
 Para solicitar el *PAZ Y SALVO*, envía un correo a *conjuntooceana@gmail.com* con la siguiente información:
@@ -140,17 +140,14 @@ Para solicitar el *PAZ Y SALVO*, envía un correo a *conjuntooceana@gmail.com* c
             case '9':
                 await flowDynamic([
                     {
-                        body: "mudanza-oceana.png",
+                        body: `Después de programada la mudanza, recuerda diligenciar el censo para actualización de datos:
+                        https://docs.google.com/forms/d/e/1FAIpQLSeZONqRXfszpaDIEwMJ2I7mLDy2gPOOdcwWHgzexrfMCnd-5g/viewform?usp=dialog` + RESTART_FOOTER,
                         media: 'https://raw.githubusercontent.com/KalaxBDJ/phygestion-chatbot/refs/heads/main/media/mudanza-oceana.png'
-                    },
-                    {
-                        body: `Después de programada la mudanza, recuerda diligenciar el censo para actualización de datos: 
-                        https://docs.google.com/forms/d/e/1FAIpQLSeZONqRXfszpaDIEwMJ2I7mLDy2gPOOdcwWHgzexrfMCnd-5g/viewform?usp=dialog`
                     }
                 ])
                 break;
             case '10':
-                await flowDynamic(
+                await reply(
                     `🎉 Información SALÓN SOCIAL 🎉
 
     La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por favor acercarse a la administración y realizar el registro.
@@ -178,7 +175,7 @@ Para solicitar el *PAZ Y SALVO*, envía un correo a *conjuntooceana@gmail.com* c
 `);
                 break;
             case '11':
-                await flowDynamic(
+                await reply(
                     `🎭 *Información para el Uso del TEATRO* 🎭
 
 La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por favor acercarse a la administración y realizar el registro.
@@ -195,7 +192,7 @@ La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por f
 Asegúrate de seguir estas normas para un uso adecuado del teatro. 🎬`);
                 break;
             case '12':
-                await flowDynamic(
+                await reply(
                     `🎱 *Información para el Uso de la Zona de BILLAR* 🎱
 
 La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por favor acercarse a la administración y realizar el registro.
@@ -214,7 +211,7 @@ La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por f
 Recuerda respetar estas normas para el cuidado y disfrute de todos. 😊`);
                 break;
             case '13':
-                await flowDynamic(
+                await reply(
                     `🍖 *Información para el Uso de la Zona de BBQ* 🍖
 
 La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por favor acercarse a la administración y realizar el registro.
@@ -252,7 +249,7 @@ La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por f
 Este reglamento tiene como objetivo promover un ambiente armonioso y seguro en la zona de BBQ del conjunto residencial.`);
                 break;
             case '14':
-                await flowDynamic(
+                await reply(
                     `🎮 *Información del SALÓN DE VIDEOJUEGOS* 🎮
 
 La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por favor acercarse a la administración y realizar el registro.
@@ -283,7 +280,7 @@ La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por f
 Este reglamento tiene como objetivo mantener el orden y el buen uso del salón de videojuegos, garantizando un espacio seguro y agradable para todos los residentes.`);
                 break;
             case '15':
-                await flowDynamic(
+                await reply(
                     `🏟️ Reservas canchas
 
 CANCHA MULTIFUNCIONAL 🏀⚽🏐
@@ -342,7 +339,7 @@ CANCHA SINTÉTICA ⚽🌱
 📌 Nota legal ⚖️: Los usuarios conocen y voluntariamente asumen los riesgos inherentes a la práctica del deporte 🏃‍♂️, y ante daños o lesiones que puedan sufrir en las canchas sintéticas del Conjunto Oceana 🏢, sin que medie negligencia por parte de la copropiedad, no habrá lugar a reclamaciones ante la persona jurídica ⚖️.`);
                 break;
             case '16':
-                await flowDynamic(
+                await reply(
                     `🏢 *Horario Administración* 🏢
 
 - *Lunes, Martes, Miércoles y Viernes*
@@ -356,30 +353,30 @@ CANCHA SINTÉTICA ⚽🌱
   - 8:00 am a 12:00 pm`);
                 break;
             case '17':
-                await flowDynamic('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/file/d/1YD2S1WaUyFXoZiEI3WA5s0C0F4mOnsrB/view?usp=sharing 📘');
+                await reply('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/file/d/1YD2S1WaUyFXoZiEI3WA5s0C0F4mOnsrB/view?usp=sharing 📘');
                 break;
             case '18':
-                await flowDynamic('Consulta el Manual de Convivencia aquí: https://drive.google.com/file/d/1h-xNvKKqBIZNhXrQ2EK64inE0eHrkhBP/view?usp=sharing 📘')
+                await reply('Consulta el Manual de Convivencia aquí: https://drive.google.com/file/d/1h-xNvKKqBIZNhXrQ2EK64inE0eHrkhBP/view?usp=sharing 📘')
                 break;
             case '19':
-                await flowDynamic('Diligencia el censo poblacional aquí: https://docs.google.com/forms/d/14nrogLBiM3cx_aB1xe5ICor7ovrksqGZnYVBHg1SDDw/edit 📝');
+                await reply('Diligencia el censo poblacional aquí: https://docs.google.com/forms/d/14nrogLBiM3cx_aB1xe5ICor7ovrksqGZnYVBHg1SDDw/edit 📝');
                 break;
             case '20':
-                await flowDynamic(`📧 Por favor, envía un correo a *conjuntooceana@gmail.com* indicando el *número de tu apartamento* 🏢.`);
+                await reply(`📧 Por favor, envía un correo a *conjuntooceana@gmail.com* indicando el *número de tu apartamento* 🏢.`);
                 break;
 
             case '21':
-                await flowDynamic(`Si tienes una PQR relacionada con temas locativos, de administración o de convivencia, por favor gestionarla exclusivamente a través de la plataforma PROPIEDATA => https://www.propiedata.com/ . Si no tienes un correo registrado, acércate a la oficina de la administración para realizar el registro.`);
+                await reply(`Si tienes una PQR relacionada con temas locativos, de administración o de convivencia, por favor gestionarla exclusivamente a través de la plataforma PROPIEDATA => https://www.propiedata.com/ . Si no tienes un correo registrado, acércate a la oficina de la administración para realizar el registro.`);
                 break;
             case '22':
-                await flowDynamic(`📞 *Comunicarse con un Asesor*
+                await reply(`📞 *Comunicarse con un Asesor*
 
 Para asistencia, puedes comunicarte con nuestra asistente administrativa:
 *Estefanía Villa*
 📲 *3108947160*`);
                 break;
             case '23':
-                await flowDynamic(`📞 *Números de Portería*
+                await reply(`📞 *Números de Portería*
 
 - *Portería Principal*:
   📲 3053356531
@@ -389,7 +386,7 @@ Para asistencia, puedes comunicarte con nuestra asistente administrativa:
   📲 3044546613`);
                 break;
             case '24':
-                await flowDynamic(`📞 *Número para Solicitar Retiro de Escombros*
+                await reply(`📞 *Número para Solicitar Retiro de Escombros*
 
 *INTERASEO* (Madera, escombros, muebles, electrodomésticos):
 📲 *3012655557*`);
@@ -398,11 +395,9 @@ Para asistencia, puedes comunicarte con nuestra asistente administrativa:
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
                 stop(ctx);
-                await flowDynamic('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋');
-                return endFlow(); //Termina la conversación
+                return endFlow('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋'); //Termina la conversación
             default:
-                await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
-                return fallBack(); //Vuelve a presentar las opciones
+                return fallBack('❌ Opción no válida. Responde con el número de una opción del menú.');
         }
         setLastFlow(ctx, flowOceana);
         return gotoFlow(flowRestartFinish);

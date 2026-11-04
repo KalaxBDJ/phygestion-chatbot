@@ -18,6 +18,6 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 'latest',
     },
-    plugins: ['bot-whatsapp'],
-    extends: ['plugin:bot-whatsapp/recommended'],
+    plugins: ['builderbot'],
+    extends: ['plugin:builderbot/recommended'],
 }

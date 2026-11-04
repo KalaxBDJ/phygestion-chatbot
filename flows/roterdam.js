@@ -1,6 +1,7 @@
-const { addKeyword } = require('@bot-whatsapp/bot');
+const { addKeyword } = require('@builderbot/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { RESTART_FOOTER } = require('./footer');
 const { setLastFlow } = require('./last-flow');
 
 
@@ -8,9 +9,9 @@ const flowRoterdam = addKeyword(['ROTERDAM'], { sensitive: true })
     .addAction(async (ctx, { gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
     })
-    .addAnswer('¡Bienvenido a la sección de Roterdam! 🏡')
-    .addAnswer('¿Qué te gustaría hacer hoy? 🤔')
     .addAnswer([
+        '¡Bienvenido a la sección de Roterdam! 🏡',
+        '¿Qué te gustaría hacer hoy? 🤔\n',
         '*Estados de Cuenta:* 📑',
         '*1.* Consulta de estados de cuenta.',
 
@@ -45,32 +46,33 @@ const flowRoterdam = addKeyword(['ROTERDAM'], { sensitive: true })
         '*0.* Terminar la conversación.'
     ], { capture: true }, async (ctx, { flowDynamic, fallBack, endFlow, gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
+        const reply = async (text) => await flowDynamic(text + RESTART_FOOTER);
         const option = ctx.body.trim();
         switch (option) {
             case '1':
-                await flowDynamic(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
+                await reply(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtjToG-BGmGgxJq8A?e=1KjneI `);
                 break;
             case '2':
-                await flowDynamic(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
+                await reply(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`);
                 break;
             case '3':
-                await flowDynamic(`Si paga después de la fecha de vencimiento de la factura (28 o 30 de cada mes)  el pago se verá reflejado al siguiente mes y se generarán intereses.`);
+                await reply(`Si paga después de la fecha de vencimiento de la factura (28 o 30 de cada mes)  el pago se verá reflejado al siguiente mes y se generarán intereses.`);
                 break;
             case '4':
-                await flowDynamic(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento y el mes de pago que se efectuó.`);
+                await reply(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento y el mes de pago que se efectuó.`);
                 break;
             case '5':
-                await flowDynamic(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento. Especificar la novedad de facturación para la debida corrección si es el caso.`);
+                await reply(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento. Especificar la novedad de facturación para la debida corrección si es el caso.`);
                 break;
             case '6':
-                await flowDynamic(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento y el día de pago que se efectuó.`);
+                await reply(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento y el día de pago que se efectuó.`);
                 break;
             case '7':
-                await flowDynamic(`MEDIOS DE PAGO CUOTAS DE ADMINISTRACIÓN
+                await reply(`MEDIOS DE PAGO CUOTAS DE ADMINISTRACIÓN
 
 1.Link para realizar pago por PSE, recuerda que al ingresar en el buscador debes poner “Urbanizacion Roterdam Ph Av 26 52140” EN LA CASILLA DE REFERENCIA NUMERO DE APTO
 https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/pagos-aval/resultado-busqueda/realizar-pago?idConv=00010326&origen=buscar&bancaEmpresarial=false&login=temporal 
@@ -79,7 +81,7 @@ https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/pagos-aval/resultad
 512171596 referencia número del apartamento.
 `);
             case '8':
-                await flowDynamic(`MEDIOS DE PAGO OTROS SERVICIOS 
+                await reply(`MEDIOS DE PAGO OTROS SERVICIOS 
 *SALON SOCIAL*
 1.Link para realizar pago por PSE, recuerda que al ingresar en el buscador debes poner “Urbanizacion Roterdam Ph Av 26 52140” EN LA CASILLA DE REFERENCIA NUMERO DE APTO
 https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/pagos-aval/resultado-busqueda/realizar-pago?idConv=00010326&origen=buscar&bancaEmpresarial=false&login=temporal 
@@ -104,7 +106,7 @@ https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/pagos-aval/resultad
 `);
                 break;
             case '9':
-                await flowDynamic(`Deben enviar un correo a roterdamph@gmail.com, con la siguiente información para solicitar el PAZ Y SALVO. Deberá tener en cuenta que el PAZ Y SALVO después de solicitarlo se le remitirá cuando hayan cumplido 3 días hábiles.
+                await reply(`Deben enviar un correo a roterdamph@gmail.com, con la siguiente información para solicitar el PAZ Y SALVO. Deberá tener en cuenta que el PAZ Y SALVO después de solicitarlo se le remitirá cuando hayan cumplido 3 días hábiles.
 -	Nombre Completo
 -	Número de Celda de Parqueadero
 -	Número de Cuarto Útil
@@ -113,7 +115,7 @@ https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/pagos-aval/resultad
 `);
                 break;
             case '10':
-                await flowDynamic(`*HORARIO GIMNASIO*
+                await reply(`*HORARIO GIMNASIO*
 24HRS
 Se cierra el gimnasio por 2 horas, de 1:00 PM a 3:00 PM, para limpieza de la misma.
 
@@ -182,7 +184,7 @@ Viernes, sábado y domingo – lunes si es festivo
 `);
                 break;
             case '11':
-                await flowDynamic(`*HORARIO ADMINISTRACIÓN*
+                await reply(`*HORARIO ADMINISTRACIÓN*
 *LUNES*
 11:00 AM A 07:00 PM
 *NOTA:* Cuando es lunes festivo se traslada el horario al dia miercoles.
@@ -195,22 +197,22 @@ Viernes, sábado y domingo – lunes si es festivo
 `);
                 break;
             case '12':
-                await flowDynamic(`https://drive.google.com/drive/folders/1WSN8T6Dej3ynoleu3L4O9qwuyhUuLOL3?usp=drive_link`);
+                await reply(`https://drive.google.com/drive/folders/1WSN8T6Dej3ynoleu3L4O9qwuyhUuLOL3?usp=drive_link`);
                 break;
             case '13':
-                await flowDynamic(`https://drive.google.com/file/d/1HVcZza8Kc5oAtru7PaqqRsM-j7oBU9om/view?usp=drive_link`);
+                await reply(`https://drive.google.com/file/d/1HVcZza8Kc5oAtru7PaqqRsM-j7oBU9om/view?usp=drive_link`);
                 break;
             case '14':
-                await flowDynamic(`https://docs.google.com/forms/d/1AXn8iRFoJb1z1Hmpk9Omi6N25hbbd9T9bCD3pQzjj3w/preview`);
+                await reply(`https://docs.google.com/forms/d/1AXn8iRFoJb1z1Hmpk9Omi6N25hbbd9T9bCD3pQzjj3w/preview`);
                 break;
             case '15':
-                await flowDynamic(`https://www.hemisferica.co/endosos`);
+                await reply(`https://www.hemisferica.co/endosos`);
                 break;
             case '16':
-                await flowDynamic(`roterdamph@gmail.com`);
+                await reply(`roterdamph@gmail.com`);
                 break;
             case '17':
-                await flowDynamic([`*RESERVAS, ENTREGA Y NORMAS DE LAS ZONAS COMUNES*
+                await reply(`*RESERVAS, ENTREGA Y NORMAS DE LAS ZONAS COMUNES*
 *Salón social de adultos reserva y entrega:*
 •	Podrán ser utilizados por los propietarios o residentes.
 •	Se deberá reservar en portería.
@@ -381,10 +383,10 @@ La cancha sintética abrirá sus puertas  8:00 Am a 10:00 Pm de domingo a jueves
 •	Retiro de la cancha y cancelación de las reservas.
 •	Multa, según lo dispuesto en el manual de convivencia del valor equivalente a una cuota de administración o suspensión de derecho a la reserva para los residentes hasta por 3 meses. 
 •	Los apartamentos en mora de administración no podrán hacer uso del espacio; si de otro apartamento se hiciere la reserva para favorecer a los residentes de un apartamento en mora, se aplicará sanción de multa o suspensión de derecho a la reserva para los residentes hasta por 3 meses.
-`]);
+`);
                 break;
             case '18':
-                await flowDynamic(`*Información MUDANZA*
+                await reply(`*Información MUDANZA*
 1. Autorización: Si eres inquilino, la agencia o propietario debe enviar la carta de autorización para ingreso o salida.
 2. Depósito: Se requiere un depósito de $150,000 en efectivo, directamente en la administración, mínimo 5 días hábiles antes de la mudanza.
 3. Programación del Espacio: La disponibilidad es de 2 horas por apartamento.
@@ -404,32 +406,30 @@ Nota: Para solicitar la devolución del depósito deberá haber llenado el censo
 `);
                 break;
             case '19':
-                await flowDynamic(`Deben enviar un correo roterdamph@gmail.com con la siguiente información para solicitar las evidencias.
+                await reply(`Deben enviar un correo roterdamph@gmail.com con la siguiente información para solicitar las evidencias.
 -	Nombre Completo
 -	APARTAMENTO
 `);
                 break;
             case '20':
-                await flowDynamic(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento, la situación presentada en la copropiedad y la evidencia de dicho suceso.`);
+                await reply(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento, la situación presentada en la copropiedad y la evidencia de dicho suceso.`);
                 break;
             case '21':
-                await flowDynamic(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento, la novedad vista por su parte y la evidencia de dicho daño.`);
+                await reply(`Por favor enviar un correo a roterdamph@gmail.com, con el número de apartamento, la novedad vista por su parte y la evidencia de dicho daño.`);
                 break;
             case '22':
-                await flowDynamic(`3017410741 Asistente administrativa `);
+                await reply(`3017410741 Asistente administrativa `);
                 break;
             case '23':
-                await flowDynamic(`3103282775`);
+                await reply(`3103282775`);
                 break;
             case '24':
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
                 stop(ctx);
-                await flowDynamic('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋');
-                return endFlow(); //Termina la conversación
+                return endFlow('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋'); //Termina la conversación
             default:
-                await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
-                return fallBack(); //Vuelve a presentar las opciones
+                return fallBack('❌ Opción no válida. Responde con el número de una opción del menú.');
         }
         setLastFlow(ctx, flowRoterdam);
         return gotoFlow(flowRestartFinish);

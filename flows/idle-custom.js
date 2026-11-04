@@ -1,4 +1,4 @@
-const { EVENTS, addKeyword } = require('@bot-whatsapp/bot');
+const { EVENTS, addKeyword } = require('@builderbot/bot');
 
 // Object to store timers for each user
 const timers = {};

@@ -1,15 +1,16 @@
-const { addKeyword } = require('@bot-whatsapp/bot');
+const { addKeyword } = require('@builderbot/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { RESTART_FOOTER } = require('./footer');
 const { setLastFlow } = require('./last-flow');
 
 const flowNuevoMilenio = addKeyword(['NUEVOMILENIO'], { sensitive: true })
     .addAction(async (ctx, { gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
     })
-    .addAnswer('¡Bienvenido a la sección de Nuevo Milenio! 🏡')
-    .addAnswer('¿Qué te gustaría hacer hoy? 🤔')
     .addAnswer([
+        '¡Bienvenido a la sección de Nuevo Milenio! 🏡',
+        '¿Qué te gustaría hacer hoy? 🤔\n',
         '*Estados de Cuenta:* 📑',
         '*1.* Consulta de estados de cuenta.',
 
@@ -48,35 +49,36 @@ const flowNuevoMilenio = addKeyword(['NUEVOMILENIO'], { sensitive: true })
         '*0.* Terminar la conversación.'
     ], { capture: true }, async (ctx, { flowDynamic, fallBack, endFlow, gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
+        const reply = async (text) => await flowDynamic(text + RESTART_FOOTER);
         const option = ctx.body.trim();
         switch (option) {
             case '1':
-                await flowDynamic(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
+                await reply(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtjToG-BGmGgxJq8A?e=1KjneI `);
                 break;
             case '2':
-                await flowDynamic(`Por favor, envía un correo a *nuevomilenioph@gmail.com* 📧, indicando el número de apartamento 🏢. Especifica cualquier novedad en la facturación 📝 para realizar la corrección correspondiente, si es necesario. ✅`);
+                await reply(`Por favor, envía un correo a *nuevomilenioph@gmail.com* 📧, indicando el número de apartamento 🏢. Especifica cualquier novedad en la facturación 📝 para realizar la corrección correspondiente, si es necesario. ✅`);
                 break;
             case '3':
-                await flowDynamic(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
+                await reply(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`);
                 break;
             case '4':
-                await flowDynamic(`⏳ Si paga después de la fecha de vencimiento de la factura, el pago se verá reflejado al siguiente mes.
+                await reply(`⏳ Si paga después de la fecha de vencimiento de la factura, el pago se verá reflejado al siguiente mes.
                     El último día hábil del mes a más tardar las 5:00 de la tarde, deberá ser efectuado el pago.`);
                     break;
             case '5':
-                await flowDynamic(
+                await reply(
                     `Por favor, envía un correo a *nuevomilenioph@gmail.com* 📧, indicando el número de apartamento 🏢.`);
                 break;
             case '6':
-                await flowDynamic(
+                await reply(
                     `📧 Por favor enviar un correo a nuevomilenioph@gmail.com, con el número de apartamento. Especificar la novedad de facturación para la debida corrección, si es el caso.`);
                 break;
             case '7':
-                await flowDynamic(`*MEDIOS DE PAGO CUOTAS DE ADMINISTRACIÓN* 💰
+                await reply(`*MEDIOS DE PAGO CUOTAS DE ADMINISTRACIÓN* 💰
 
 1. *Pago en línea por PSE* 🔗
    Realiza el pago a través del siguiente enlace:
@@ -92,7 +94,7 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
    *Referencia:* Número de tu apartamento.`);
                 break;
             case '8':
-                await flowDynamic(
+                await reply(
                     `*SALÓN SOCIAL* 🏢
 
 1. *Pago en línea por PSE* 🔗
@@ -109,7 +111,7 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
    *Referencia:* Código *001*.`);
                 break;
             case '9':
-                await flowDynamic(
+                await reply(
                     `*CIRCULAR INFORMATIVA* 📝
 
 Para solicitar el endoso del seguro de crédito hipotecario:
@@ -118,7 +120,7 @@ Para solicitar el endoso del seguro de crédito hipotecario:
 📧 *Correo:* consultorvivaseguros@gmail.com`);
                 break;
             case '10':
-                await flowDynamic(
+                await reply(
                     `Por favor, envía un correo a *nuevomilenioph@gmail.com* 📧 con la siguiente información para solicitar el *PAZ Y SALVO*. Ten en cuenta que, una vez solicitado, el documento será remitido después de *3 días hábiles* 📆.
 
 *Información requerida:*
@@ -128,7 +130,7 @@ Para solicitar el endoso del seguro de crédito hipotecario:
 - Soporte de pago del mes en curso 💵`);
                 break;
             case '11':
-                await flowDynamic(
+                await reply(
                     `*PROTOCOLO DE MUDANZAS* 📦
 
 *Cordial saludo, Propietarios y Residentes:*
@@ -147,7 +149,7 @@ A continuación, se presenta el protocolo de mudanzas a seguir a partir de la fe
 ¡Gracias por su apoyo y colaboración! ✅`);
                 break;
             case '12':
-                await flowDynamic(
+                await reply(
                     `*HORARIO ADMINISTRACIÓN* 🏢
 
 - *Lunes a Viernes:*
@@ -158,7 +160,7 @@ A continuación, se presenta el protocolo de mudanzas a seguir a partir de la fe
   8:00 am a 12:00 pm`);
                 break;
             case '13':
-                await flowDynamic(
+                await reply(
                     `*HORARIO DE ÁREAS COMUNES*
 
 *GIMNASIO* 🏋️‍♂️
@@ -194,19 +196,19 @@ A continuación, se presenta el protocolo de mudanzas a seguir a partir de la fe
 - *Domingos y festivos:* 9:00 am a 4:30 pm`);
                 break;
             case '14':
-                await flowDynamic('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/file/d/1bakrjhs1sBauAcn3yDKcD34y7F2iWH50/view?usp=sharing  📘');
+                await reply('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/file/d/1bakrjhs1sBauAcn3yDKcD34y7F2iWH50/view?usp=sharing  📘');
                 break;
             case '15':
-                await flowDynamic('Consulta el Manual de Convivencia aquí: https://drive.google.com/file/d/1KacO1jQL3DdJI0ACgYrzzcOmVwIvR-JA/view?usp=sharing 📘')
+                await reply('Consulta el Manual de Convivencia aquí: https://drive.google.com/file/d/1KacO1jQL3DdJI0ACgYrzzcOmVwIvR-JA/view?usp=sharing 📘')
                 break;
             case '16':
-                await flowDynamic('Diligencia el censo poblacional aquí: https://forms.gle/SFNoU432QZyaLHir9 📝');
+                await reply('Diligencia el censo poblacional aquí: https://forms.gle/SFNoU432QZyaLHir9 📝');
                 break;
             case '17':
-                await flowDynamic(`📧 Por favor enviar el derecho de petición al siguiente correo nuevomilenioph@gmail.com`);
+                await reply(`📧 Por favor enviar el derecho de petición al siguiente correo nuevomilenioph@gmail.com`);
                 break;
             case '18':
-                await flowDynamic(
+                await reply(
                     `*PROTOCOLO Y REGLAMENTO PARA EL USO DEL SALÓN SOCIAL* 🏢
 
 1. *Uso Exclusivo para Residentes*
@@ -251,27 +253,27 @@ A continuación, se presenta el protocolo de mudanzas a seguir a partir de la fe
   - Evita reventar globos como parte de la decoración; esto afecta el descanso de los residentes. Usa tijeras para desinflar y retirar los globos de manera silenciosa.`);
                 break;
             case '19':
-                await flowDynamic(`*PQRSF FORMULARIO* 📝
+                await reply(`*PQRSF FORMULARIO* 📝
 https://forms.gle/boXWnjekd6z7ZKUV8`);
                 break;
             case '20':
-                await flowDynamic(`*Reporte de Novedades (Locativas) FORMATO* 🛠️
+                await reply(`*Reporte de Novedades (Locativas) FORMATO* 🛠️
 https://forms.gle/KufCvrShz2y2hD5w8`);
                 break;
             case '21':
-                await flowDynamic(`Señor Propietario, puede comunicarse a la portería al número 3237855619`);
+                await reply(`Señor Propietario, puede comunicarse a la portería al número 3237855619`);
                 break;
             case '22':
-                await flowDynamic(`*Comunicación con un Asesor* 📞
+                await reply(`*Comunicación con un Asesor* 📞
 *Asistente Administrativa:* Katty Salas
 📱 3014468877`);
                 break;
             case '23':
-                await flowDynamic(`*Número de Portería* 🛡️
+                await reply(`*Número de Portería* 🛡️
 📱 3237855619`);
                 break;
             case '24':
-                await flowDynamic(`*Número para Solicitar Retiro de Escombros* 🗑️
+                await reply(`*Número para Solicitar Retiro de Escombros* 🗑️
 *INTERASEO (Madera, escombros, muebles, electrodomésticos):*
 📱 3012655557`);
                 break;
@@ -279,11 +281,9 @@ https://forms.gle/KufCvrShz2y2hD5w8`);
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
                 stop(ctx);
-                await flowDynamic('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋');
-                return endFlow(); //Termina la conversación
+                return endFlow('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋'); //Termina la conversación
             default:
-                await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
-                return fallBack(); //Vuelve a presentar las opciones
+                return fallBack('❌ Opción no válida. Responde con el número de una opción del menú.');
         }
         setLastFlow(ctx, flowNuevoMilenio);
         return gotoFlow(flowRestartFinish);

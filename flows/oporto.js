@@ -1,6 +1,7 @@
-const { addKeyword } = require('@bot-whatsapp/bot');
+const { addKeyword } = require('@builderbot/bot');
 const { reset, stop } = require('./idle-custom');
 const flowRestartFinish = require('./restart');
+const { RESTART_FOOTER } = require('./footer');
 const { setLastFlow } = require('./last-flow');
 
 
@@ -8,9 +9,9 @@ const flowOporto = addKeyword(['OPORTO'], { sensitive: true })
     .addAction(async (ctx, { gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
     })
-    .addAnswer('¡Bienvenido a la sección de OPORTO! 🏡')
-    .addAnswer('¿Qué te gustaría hacer hoy? 🤔')
     .addAnswer([
+        '¡Bienvenido a la sección de OPORTO! 🏡',
+        '¿Qué te gustaría hacer hoy? 🤔\n',
         '*Estados de Cuenta:* 📑',
         '*1.* Consulta de estados de cuenta.',
         '*2.* Reclamación de estados de cuenta.',
@@ -46,27 +47,28 @@ const flowOporto = addKeyword(['OPORTO'], { sensitive: true })
 
     ], { capture: true }, async (ctx, { flowDynamic, fallBack, endFlow, gotoFlow }) => {
         reset(ctx, gotoFlow, 600000);
+        const reply = async (text) => await flowDynamic(text + RESTART_FOOTER);
         const option = ctx.body.trim();
         switch (option) {
             case '1':
-                await flowDynamic(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
+                await reply(`Consulta tus estados de cuenta aquí: https://www.phenlinea.info/ 📊
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtjToG-BGmGgxJq8A?e=1KjneI `);
                 break;
             case '2':
-                await flowDynamic(`Por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠.
+                await reply(`Por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠.
 Asegúrate de especificar la novedad de facturación 📝 para que podamos realizar la corrección correspondiente, si es necesario.`);
                 break;
             case '3':
-                await flowDynamic(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
+                await reply(`Solicita tu factura aquí: https://www.phenlinea.info/ 🧾
 
 Si deseas obtener más información o aprender cómo realizar el proceso, haz clic aquí para ver el video explicativo: https://1drv.ms/v/s!ApxrvRa6pSarhMtiSoKIZPaN7rAuIw?e=mcCioe`);
                 break;
             case '4':
-                await flowDynamic(`Para reportar novedad de facturación, por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠 y asegúrate de especificar la novedad`);
+                await reply(`Para reportar novedad de facturación, por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠 y asegúrate de especificar la novedad`);
                     break;
             case '5':
-                await flowDynamic(
+                await reply(
                     `*MEDIOS DE PAGO CUOTAS DE ADMINISTRACIÓN* 💰
 
 1.https://www.phenlinea.info/
@@ -76,7 +78,7 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
 3. Directamente en oficina bancaria *DAVIVIENDA*, cuenta de ahor*037570395998* referencia número del apartamento.`);
                 break;
             case '6':
-                await flowDynamic(
+                await reply(
                     `*MEDIOS DE PAGO OTROS SERVICIOS* 💳
 
 *CANCHA* ⚽
@@ -98,18 +100,18 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
                 `);
                 break;
             case '7':
-                await flowDynamic(
+                await reply(
                     `Por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠 y el día en que realizaste el pago 📅.`);
                 break;
             case '8':
-                await flowDynamic(`Por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠 y el mes de pago que se efectuó.`);
+                await reply(`Por favor, envía un correo a 📧 oportociudadelaph@gmail.com con el número de tu apartamento 🏠 y el mes de pago que se efectuó.`);
                 break;
             case '9':
-                await flowDynamic(
+                await reply(
                     `Si realizas el pago después de la *fecha de vencimiento* de la factura 📅, este se reflejará en el *estado de cuenta del mes siguiente*. 💸`);
                 break;
             case '10':
-                await flowDynamic(
+                await reply(
                     `Para obtener el paz y salvo, envía un correo a 📧 oportociudadelaph@gmail.com con la siguiente información:
 
 1. Nombre completo 👤
@@ -120,14 +122,14 @@ Si deseas obtener más información o aprender cómo realizar el proceso, haz cl
 *❗NOTA:* La entrega de los paz y salvo se realizará en un plazo de 3 días hábiles.`);
                 break;
             case '11':
-                await flowDynamic(
+                await reply(
                     `🚛 *INFORMACIÓN DE MUDANZAS*
 Las mudanzas son de lunes a viernes de 8:00 AM a 12:00 PM y de 2:00 PM a 4:30 PM - Sábados de 8:00 AM a 2:00 PM
 Para realizar mudanzas tanto ingreso como salida, el propietario o  la inmobiliaria debe enviar la autorización vía correo electrónico 3 días hábiles antes de la mudanza ser realizada; en este correo deberá indicarnos la fecha exacta de la mudanza.
 Se debe dar un depósito de 200.000 en efectivo en portería `);
                 break;
             case '12':
-                await flowDynamic(
+                await reply(
                     `*HORARIO ADMINISTRACIÓN*
 LUNES, MARTES, MIERCOLES, JUEVES Y VIERNES
 8:00 AM A 1:00 PM 2:00 PM A 5:00 PM
@@ -136,7 +138,7 @@ SABADO (2 al mes)
 8:00 AM A 12:00 PM`);
                 break;
             case '13':
-                await flowDynamic(
+                await reply(
                     `*HORARIOS DEL GIMNASIO* 🏋️
 *Lunes a Domingo* (Incluye festivos): ⏰ 5:00 AM a 9:00 PM.
 
@@ -160,19 +162,19 @@ SABADO (2 al mes)
 *Lunes*: 12 a 8 pm.`);
                 break;
             case '14':
-                await flowDynamic('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/drive/folders/1rZcE1osCx4d6rrWO9V6NcEcWLGP02_NG?usp=sharing📘');
+                await reply('Consulta el Reglamento de Propiedad Horizontal aquí: https://drive.google.com/drive/folders/1rZcE1osCx4d6rrWO9V6NcEcWLGP02_NG?usp=sharing📘');
                 break;
             case '15':
-                await flowDynamic('Consulta el Manual de Convivencia aquí: https://drive.google.com/file/d/1K-b5hL_YkAcLUKQM7og7BMfC0W8Kpmj9/view?usp=sharing 📘')
+                await reply('Consulta el Manual de Convivencia aquí: https://drive.google.com/file/d/1K-b5hL_YkAcLUKQM7og7BMfC0W8Kpmj9/view?usp=sharing 📘')
                 break;
             case '16':
-                await flowDynamic('Diligencia el censo poblacional aquí: https://docs.google.com/document/d/1qxR-UipK6boYK3Rnoyh9QvDO1RX2HeAu/edit?usp=sharing&ouid=116041933802928543009&rtpof=true&sd=true 📝');
+                await reply('Diligencia el censo poblacional aquí: https://docs.google.com/document/d/1qxR-UipK6boYK3Rnoyh9QvDO1RX2HeAu/edit?usp=sharing&ouid=116041933802928543009&rtpof=true&sd=true 📝');
                 break;
             case '17':
-                await flowDynamic('Radica tu derecho de petición en el siguiente correo: oportociudadelaph@gmail.com 📧');
+                await reply('Radica tu derecho de petición en el siguiente correo: oportociudadelaph@gmail.com 📧');
                 break;
             case '18':
-                await flowDynamic(
+                await reply(
                     `*RESERVA Y COSTO DEL SALÓN SOCIAL* 🎉
 
 Puede realizar la reserva en el siguiente enlace => https://www.phenlinea.info/
@@ -192,7 +194,7 @@ Se entrega el mismo día del evento.
 * Si el residente no realiza el aseo, puede contratar a nuestros colaboradores por un valor de *50.000* pesos.`);
                 break;
             case '19':
-                await flowDynamic(`*RESERVA Y COSTO DEL BBQ* 🔥
+                await reply(`*RESERVA Y COSTO DEL BBQ* 🔥
 
 Puede realizar la reserva en el siguiente enlace => https://www.phenlinea.info/
 * 💵 El BBQ tiene un valor de 70.000 pesos que se debe consignar a la cuenta de la copropiedad una *semana antes del evento*.
@@ -209,33 +211,31 @@ Puede realizar la reserva en el siguiente enlace => https://www.phenlinea.info/
 * De los 100.000 pesos de depósito, 40.000 pesos serán para la limpieza del BBQ, y este valor es *obligatorio*. Teniendo en cuenta esto, *No se debe limpiar el BBQ al finalizar*.`);
                 break;
             case '20':
-                await flowDynamic(`PQRS -  ✉️ Por favor, enviar un correo a 📧 oportociudadelaph@gmail.com con la siguiente información:
+                await reply(`PQRS -  ✉️ Por favor, enviar un correo a 📧 oportociudadelaph@gmail.com con la siguiente información:
 
 * 🏠 Número de apartamento
 * 📋 Descripción de la situación presentada en la copropiedad
 * 📎 Evidencia del suceso (fotos, videos, o documentos)`);
                 break;
             case '21':
-                await flowDynamic(`✉️ Deben enviar un correo a 📧 oportociudadelaph@gmail.com con la siguiente información para solicitar las evidencias:
+                await reply(`✉️ Deben enviar un correo a 📧 oportociudadelaph@gmail.com con la siguiente información para solicitar las evidencias:
 
 * 👤 Nombre Completo
 * 🏠 Número de Apartamento`);
                 break;
             case '22':
-                await flowDynamic('✉️ Por favor, enviar un correo a 📧 oportociudadelaph@gmail.com indicando el *número de apartamento*, una breve *descripción de la novedad observada* y adjuntando la *evidencia correspondiente* (fotos, videos, o documentos que respalden el daño reportado).');
+                await reply('✉️ Por favor, enviar un correo a 📧 oportociudadelaph@gmail.com indicando el *número de apartamento*, una breve *descripción de la novedad observada* y adjuntando la *evidencia correspondiente* (fotos, videos, o documentos que respalden el daño reportado).');
                 break;
             case '23':
-                await flowDynamic('Te puedes contactar al número: 301 740 12 34 con Sandra Soto - Asistente de Administración📞');
+                await reply('Te puedes contactar al número: 301 740 12 34 con Sandra Soto - Asistente de Administración📞');
                 break;
             case '24':
                 return gotoFlow(require('./welcome')); //Redirige al flujo de reinicio
             case '0':
                 stop(ctx);
-                await flowDynamic('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋');
-                return endFlow(); //Termina la conversación
+                return endFlow('¡Gracias por usar nuestro servicio! 🙌 ¡Hasta luego! 👋'); //Termina la conversación
             default:
-                await flowDynamic('❌ Opción no válida. Por favor, elige una opción válida.');
-                return fallBack(); //Vuelve a presentar las opciones
+                return fallBack('❌ Opción no válida. Responde con el número de una opción del menú.');
         }
         setLastFlow(ctx, flowOporto);
         return gotoFlow(flowRestartFinish);

@@ -1,4 +1,4 @@
-FROM node:18-bullseye as bot
+FROM node:20-bookworm as bot
 WORKDIR /app
 COPY package*.json ./
 RUN npm i

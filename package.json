@@ -1,32 +1,24 @@
 {
-    "name": "base-bailey-memory",
+    "name": "phygestion-chatbot",
     "version": "1.0.0",
     "description": "",
     "main": "app.js",
     "scripts": {
         "prestart": "npx eslint . --no-ignore",
-        "pre-copy": "cd .. && npm run  copy.lib base-baileys-memory",
         "start": "node app.js",
         "dev": "nodemon app.js"
     },
     "keywords": [],
     "dependencies": {
-        "@bot-whatsapp/bot": "latest",
-        "@bot-whatsapp/cli": "latest",
-        "@bot-whatsapp/database": "latest",
-        "@bot-whatsapp/portal": "latest",
-        "@bot-whatsapp/provider": "latest",
-        "@whiskeysockets/baileys": "6.5.0",
-        "bot-ws-plugin-openai": "^1.0.6",
-        "dotenv": "^16.3.1",
-        "express": "^4.18.2",
-        "openai": "^4.24.1",
-        "paypal-rest-sdk": "^1.8.1",
-        "wa-sticker-formatter": "4.3.2"
+        "@builderbot/bot": "1.4.4",
+        "@builderbot/provider-baileys": "1.4.4",
+        "@builderbot/provider-meta": "1.4.4",
+        "axios": "^1.13.2",
+        "dotenv": "^16.3.1"
     },
     "devDependencies": {
         "eslint": "^8.52.0",
-        "eslint-plugin-bot-whatsapp": "latest",
+        "eslint-plugin-builderbot": "1.4.4",
         "nodemon": "^3.1.4"
     },
     "author": "",
