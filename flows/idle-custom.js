@@ -6,7 +6,8 @@ const timers = {};
 // Flow for handling inactivity
 const idleFlow = addKeyword(EVENTS.ACTION).addAction(
     async (_, { endFlow }) => {
-        return endFlow("⚠️ No hemos recibido respuesta en los últimos 10 minutos. 🕒 Por inactividad, la conversación se ha finalizado. Si necesitas más ayuda, no dudes en volver a contactarnos. ¡Que tengas un excelente día! 😊");
+        // Silent on purpose: the timeout message was a billable send that told the user nothing they need.
+        return endFlow();
     }
 );
 

@@ -280,7 +280,8 @@ La reserva debe hacerse por la APP PROPIEDATA; en caso de no tener la APP, por f
 Este reglamento tiene como objetivo mantener el orden y el buen uso del salón de videojuegos, garantizando un espacio seguro y agradable para todos los residentes.`);
                 break;
             case '15':
-                await reply(
+                // Over WhatsApp's 4096-character limit as one message, so it goes out as one message per court.
+                await flowDynamic(
                     `🏟️ Reservas canchas
 
 CANCHA MULTIFUNCIONAL 🏀⚽🏐
@@ -307,10 +308,9 @@ CANCHA MULTIFUNCIONAL 🏀⚽🏐
 
 🔟 CUIDADOS Y DEBERES DE LOS USUARIOS 🧹: Quien haga uso de las canchas se compromete a cuidarlas y mantenerlas limpias 🧼.
 
-⚠️ PASADOS 20 MINUTOS ⏳, si no se hace uso de la reserva, se dará por cancelada y se cederá el espacio 🔄.
-
-
-CANCHA SINTÉTICA ⚽🌱
+⚠️ PASADOS 20 MINUTOS ⏳, si no se hace uso de la reserva, se dará por cancelada y se cederá el espacio 🔄.`);
+                await reply(
+                    `CANCHA SINTÉTICA ⚽🌱
 
 📜 NORMAS PARA EL USO DE LAS CANCHAS DEPORTIVAS
 

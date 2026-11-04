@@ -36,7 +36,7 @@ Since 2026-10-01 Meta bills every free-form message the bot sends inside the 24h
 - `flows/restart.js`: silent capture step after an answer (it sends nothing on entry; the prompt is the footer already appended to the answer). `8` = back to previous menu, `9` = main menu, `0` = end.
 - `flows/footer.js`: `RESTART_FOOTER`, the "¿Necesitas algo más? 8 / 9 / 0" text appended to every answer.
 - `flows/last-flow.js`: per-user (keyed by `ctx.from`) in-memory Map remembering the last unit flow so `8` in restart can return to it.
-- `flows/idle-custom.js`: per-user 10-minute (600000 ms) inactivity timer; on timeout goes to `idleFlow`, which ends the conversation.
+- `flows/idle-custom.js`: per-user 10-minute (600000 ms) inactivity timer; on timeout goes to `idleFlow`, which ends the conversation silently (no message: it would be a billable send that tells the user nothing they need).
 - `flows/amatista.js`, `flows/roterdam.js`: deprecated, commented out in `app.js` (Roterdam also in `welcome.js`).
 - `media/`: images sent by the Oceana flow.
 - `TEMPLATE_CHATBOT_UNIDAD.md`: questionnaire given to administrators to collect the content needed to create or update a unit's flow.
@@ -58,7 +58,7 @@ When adding or changing a unit: copy the closest existing flow, edit its menu an
 - `welcome.js` requires unit flows and `restart.js` lazily requires `welcome` to avoid a circular import; keep it that way.
 - Altea, Majagua, Oceana and Paraiso are registered in `app.js` but are not in the welcome menu (reachable only by typing their keyword).
 - `flows/oceana.js` uses the keyword `NUEVOMILENIO`, the same as Nuevo Milenio; likely a copy-paste bug.
-- `flows/oceana.js` option 15 (court reservations) is about 5,300 characters, over WhatsApp's 4096 limit, so Meta rejects it. It was already that long before the message-cost work and has not been split yet.
+- `flows/oceana.js` option 15 (court rules) is about 5,300 characters, over WhatsApp's 4096 limit, so it is sent as two messages (one per court), the footer only on the second. Before this it was a single oversized message that Meta rejected.
 - On startup the Meta provider fetches the number's profile from Graph and emits `error` if that fails; `app.js` has a listener for it, because without one Node would crash the process.
 - All state (timers, last flow) is in memory and lost on restart; timers are keyed by user phone number.
 - Secrets live in `.env` (git-ignored). Do not commit it, nor `*.log`, `bot_sessions` or `*.qr.png` (written when running with `PROVIDER=baileys`).
