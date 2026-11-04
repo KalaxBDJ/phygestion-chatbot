@@ -58,7 +58,7 @@ When adding or changing a unit: copy the closest existing flow, edit its menu an
 - `welcome.js` requires unit flows and `restart.js` lazily requires `welcome` to avoid a circular import; keep it that way.
 - Altea, Majagua, Oceana and Paraiso are registered in `app.js` but are not in the welcome menu (reachable only by typing their keyword).
 - `flows/oceana.js` uses the keyword `NUEVOMILENIO`, the same as Nuevo Milenio; likely a copy-paste bug.
-- `flows/oceana.js` option 15 (court reservations) is about 5,300 characters, over WhatsApp's 4096 limit, so Meta rejects it. It was already that long before the message-cost work and has not been split yet.
+- `flows/oceana.js` option 15 (court rules) is about 5,300 characters, over WhatsApp's 4096 limit, so it is sent as two messages (one per court), the footer only on the second. Before this it was a single oversized message that Meta rejected.
 - On startup the Meta provider fetches the number's profile from Graph and emits `error` if that fails; `app.js` has a listener for it, because without one Node would crash the process.
 - All state (timers, last flow) is in memory and lost on restart; timers are keyed by user phone number.
 - Secrets live in `.env` (git-ignored). Do not commit it, nor `*.log`, `bot_sessions` or `*.qr.png` (written when running with `PROVIDER=baileys`).
