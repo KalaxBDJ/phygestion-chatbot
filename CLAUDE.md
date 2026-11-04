@@ -36,7 +36,7 @@ Since 2026-10-01 Meta bills every free-form message the bot sends inside the 24h
 - `flows/restart.js`: silent capture step after an answer (it sends nothing on entry; the prompt is the footer already appended to the answer). `8` = back to previous menu, `9` = main menu, `0` = end.
 - `flows/footer.js`: `RESTART_FOOTER`, the "¿Necesitas algo más? 8 / 9 / 0" text appended to every answer.
 - `flows/last-flow.js`: per-user (keyed by `ctx.from`) in-memory Map remembering the last unit flow so `8` in restart can return to it.
-- `flows/idle-custom.js`: per-user 10-minute (600000 ms) inactivity timer; on timeout goes to `idleFlow`, which ends the conversation.
+- `flows/idle-custom.js`: per-user 10-minute (600000 ms) inactivity timer; on timeout goes to `idleFlow`, which ends the conversation silently (no message: it would be a billable send that tells the user nothing they need).
 - `flows/amatista.js`, `flows/roterdam.js`: deprecated, commented out in `app.js` (Roterdam also in `welcome.js`).
 - `media/`: images sent by the Oceana flow.
 - `TEMPLATE_CHATBOT_UNIDAD.md`: questionnaire given to administrators to collect the content needed to create or update a unit's flow.
