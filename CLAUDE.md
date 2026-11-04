@@ -11,7 +11,7 @@ WhatsApp chatbot for a property-management (Propiedad Horizontal) company. Resid
   - `meta` (default, production on Railway): **Meta WhatsApp Cloud API** (`@builderbot/provider-meta`, Graph API `v22.0`, override with `META_API_VERSION`)
   - `baileys` (local testing only): `@builderbot/provider-baileys`, scan the QR with a **separate test phone** (the number registered with Meta cannot be used in a WhatsApp app)
 - Database: in-memory `MemoryDB` (no persistence)
-- Config via `.env` (see `.env.example`): `PROVIDER`, `PORT`, and for Meta `TOKEN`, `NUMBER_ID`, `VERIFY_TOKEN`
+- Config via `.env` (see `.env.example`): `PROVIDER`, `PORT`, and for Meta `TOKEN`, `NUMBER_ID`, `VERIFY_TOKEN` and `APP_SECRET` (the app secret from the Meta dashboard; with it set, webhook POSTs without a valid `X-Hub-Signature-256` get a 401, without it the bot logs a warning and accepts any POST)
 - Deployed with the `Dockerfile` (Railway-style build args `RAILWAY_STATIC_URL`, `PUBLIC_URL`, `PORT`)
 - `README.md` is the upstream bot-whatsapp boilerplate, not project docs.
 

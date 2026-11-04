@@ -62,14 +62,17 @@ const setupMeta = () => {
     )
 
     const { MetaProvider } = require('@builderbot/provider-meta')
-    const { TOKEN, NUMBER_ID, VERIFY_TOKEN } = process.env
+    const { TOKEN, NUMBER_ID, VERIFY_TOKEN, APP_SECRET } = process.env
 
-    console.log(`[env] TOKEN set: ${!!TOKEN} (len ${TOKEN?.length}), NUMBER_ID: ${NUMBER_ID}, VERIFY_TOKEN set: ${!!VERIFY_TOKEN}`)
+    console.log(`[env] TOKEN set: ${!!TOKEN} (len ${TOKEN?.length}), NUMBER_ID: ${NUMBER_ID}, VERIFY_TOKEN set: ${!!VERIFY_TOKEN}, APP_SECRET set: ${!!APP_SECRET}`)
+    if (!APP_SECRET) console.warn('[env] APP_SECRET is not set: webhook POSTs are not signature-checked, anyone who knows the URL can make the bot send messages')
 
     const adapterProvider = createProvider(MetaProvider, {
         jwtToken: TOKEN,
         numberId: NUMBER_ID,
         verifyToken: VERIFY_TOKEN,
+        // When set, webhook POSTs must carry a valid X-Hub-Signature-256 from Meta or get a 401.
+        appSecret: APP_SECRET || undefined,
         version: process.env.META_API_VERSION || 'v22.0',
     })
 
